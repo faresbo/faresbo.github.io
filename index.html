@@ -10,14 +10,15 @@
        * Check if current user has authorized this application.
       */
 
-      console.log("access_type !!!");
+      console.log("access_type !!!!! //immediate");
       function checkAuth() {
         gapi.auth.authorize(
           {
             'client_id': CLIENT_ID,
-             //"access_type" : "offline",
             'scope': SCOPES.join(' '),
-            'immediate': true
+            "access_type" : "offline",
+
+            //'immediate': true
           }, handleAuthResult);
       }
 
