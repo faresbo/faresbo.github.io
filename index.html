@@ -10,16 +10,27 @@
        * Check if current user has authorized this application.
       */
 
-      console.log("access_type !!!!! //responsetype");
+      console.log("access_type !!!!! // return acces token");
       function checkAuth() {
+
+        gapi.auth.authorize(
+          {
+            'code': "4/JcW8SYJYqqme7O0VvgjsM3RGQTLN0gyzx4uWRFPh_dg",
+            'client_id': CLIENT_ID,
+            "grant_type" : "authorization_code"
+          }, handleAuthResult);
+/*
         gapi.auth.authorize(
           {
             'client_id': CLIENT_ID,
             'scope': SCOPES.join(' '),
             "access_type" : "offline",
             "response_type" : "code"
-            //'immediate': true
+            'immediate': true
           }, handleAuthResult);
+*/
+
+
       }
 
       /**
