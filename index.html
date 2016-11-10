@@ -9,9 +9,7 @@
       /**
        * Check if current user has authorized this application.
        */
-       console.log("access_type :");
-       console.log("access_type : offline");
-
+       console.log("access_type !!");
       function checkAuth() {
         gapi.auth.authorize(
           {
@@ -24,7 +22,7 @@
 
       /**
        * Handle response from authorization server.
-       *
+       
        * @param {Object} authResult Authorization result.
        */
       function handleAuthResult(authResult) {
