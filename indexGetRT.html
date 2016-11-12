@@ -9,7 +9,7 @@ function login () {
   console.log("createToken");
   $.ajax({
       type: 'POST',
-      url: 'https://accounts.google.com/o/oauth2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive&response_type=code&client_id=193239953749-j45d7adkrjbiemsmavg86loobjkceltt.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Ffaresbo.github.io',
+      url: 'https://accounts.google.com/o/oauth2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive&response_type=code&client_id=193239953749-j45d7adkrjbiemsmavg86loobjkceltt.apps.googleusercontent.com&redirect_uri=https://accounts.google.com/o/oauth2/v2/auth',
       /*data: { client_id : "193239953749-j45d7adkrjbiemsmavg86loobjkceltt.apps.googleusercontent.com",
        scope : "https://www.googleapis.com/auth/drive",
        response_type : 'code',
