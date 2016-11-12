@@ -10,7 +10,7 @@
        * Check if current user has authorized this application.
       */
 
-      console.log("access_type !!!!! // return acces token");
+      console.log("access_type !!!!! // return acces token debg");
       function checkAuth() {
 console.log(gapi);
 console.log(gapi.auth);
@@ -29,6 +29,7 @@ console.log(gapi.auth);
             "access_type" : "offline",
             "response_type" : "code"
             'immediate': true
+            //approval_prompt to force.
           }, handleAuthResult);
 */
 

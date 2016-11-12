@@ -1,0 +1,55 @@
+<html>
+  <head>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+
+
+function login () {
+  console.log("createToken");
+  $.ajax({
+      type: 'POST',
+      url: 'https://accounts.google.com/o/oauth2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive&response_type=code&client_id=193239953749-j45d7adkrjbiemsmavg86loobjkceltt.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Ffaresbo.github.io',
+      /*data: { client_id : "193239953749-j45d7adkrjbiemsmavg86loobjkceltt.apps.googleusercontent.com",
+       scope : "https://www.googleapis.com/auth/drive",
+       response_type : 'code',
+       access_type : 'offline',
+       redirect_uri : 'http://localhost:8000/indexGetRT.html'
+
+     },*/
+      dataType: 'json',
+      success: function (data) {       
+        console.log("success");
+        console.log(data);
+      },
+      error: function (data) {
+        console.log("fail");
+        console.log(data);
+    }
+  });
+}//end login();
+
+
+$(document).ready(function () {
+  console.log("login");
+  login();
+});
+
+
+    </script>
+    <script src="https://apis.google.com/js/client.js?onload=checkAuth">
+    </script>
+  </head>
+  <body>
+    <div id="authorize-div" style="display: none">
+      <span>Authorize access to Drive API</span>
+      <!--Button for the user to click to initiate auth sequence -->
+      <button id="authorize-button" onclick="handleAuthClick(event)">
+        Authorize
+      </button>
+    </div>
+    <pre id="output"></pre>
+
+
+  </body>
+</html>
