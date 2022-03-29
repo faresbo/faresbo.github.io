@@ -95,6 +95,25 @@ init();
 function init ( e ) {
   
 
+setTimeout(function  (argument) {
+   window.dispatchEvent(new Event('resize'));
+
+}, 500);// body...
+
+ 
+
+setTimeout(function  (argument) {
+   window.dispatchEvent(new Event('resize'));
+
+}, 1000);// body...
+
+setTimeout(function  (argument) {
+   window.dispatchEvent(new Event('resize'));
+
+}, 3000);// body...
+
+  
+  
 var url_string = window.location.href; //window.location.href
 var url = new URL(url_string);
 var c = url.searchParams.get("mode");
