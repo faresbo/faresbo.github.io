@@ -1,3 +1,8 @@
+ let check = false;
+  (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4))) check = true;})(navigator.userAgent||navigator.vendor||window.opera);
+if( check ){
+  alert("is a mobile")
+}
  var sommaire_book = [
 {
   titre:'FAISONS CONNAISSANCE !',
@@ -786,17 +791,17 @@ $(".thumbnails").hide();
 
 });
 
-$(document).on("click",".app-ressources,#mesressources",function  (event) {
+$(document).on("click touchstart",".app-ressources,#mesressources",function  (event) {
 	event.stopPropagation();
-})// click...
+})// click touchstart...
 
-$(document).on("click",".thumbnails,#btn-header-thumbnails",function  (event) {
+$(document).on("click touchstart",".thumbnails,#btn-header-thumbnails",function  (event) {
 	event.stopPropagation();
-})// click...
+})// click touchstart...
 
  
 
-$(document).on("click",".header-btn",function  (e) {
+$(document).on("click touchstart",".header-btn",function  (e) {
 
 if( !$(this).hasClass("app-ressources") ){
 
@@ -885,7 +890,7 @@ $(".ms-options-wrap input").attr("placeholder","Chercher")
 })//endliste_module_book
 
 
-$(document).on("click",".app-ressources",async function  (e) {
+$(document).on("click touchstart",".app-ressources",async function  (e) {
 $(this).toggleClass("is-active");
 if( $(this).hasClass("is-active") ){
 var userinfo = await getUserInfo();
@@ -901,7 +906,7 @@ else{
 
 
 
-$(document).on("click","#btn-book-text-select",function  (e) {
+$(document).on("click touchstart","#btn-book-text-select",function  (e) {
 
 $(this).toggleClass("is-active");
 if( $(this).hasClass("is-active") ){
@@ -915,12 +920,12 @@ else{
 
 
 
-$(document).on("click","#btn-book-zoom-out",function  (e) {
+$(document).on("click touchstart","#btn-book-zoom-out",function  (e) {
 instance.smoothZoom($('.book').width()/2, $('.book').height()/2, 0.5);
 })//end
 
 
- $(document).on("click","#btn-book-zoom-in",function  (e) {
+ $(document).on("click touchstart","#btn-book-zoom-in",function  (e) {
 instance.smoothZoom($('.book').width()/2, $('.book').height()/2, 1.5);
 })//end
  
@@ -932,24 +937,24 @@ $(document).on("keypress",".input-current-page",function  (e) {
 })
  
 
-$(document).on("click","#home-page",function  (argument) {
+$(document).on("click touchstart","#home-page",function  (argument) {
 	$('.book').turn('page', 1);
 })// #home-page...
 
-$(document).on("click","#sommaire-page",function  (argument) {
+$(document).on("click touchstart","#sommaire-page",function  (argument) {
 	$('.book').turn('page', 3);
 })// #home-page...
 
-$(document).on("click","#prev-page",function  (argument) {
+$(document).on("click touchstart","#prev-page",function  (argument) {
   $('.book').turn('previous');
 })// #home-page...
 
-$(document).on("click","#next-page",function  (argument) {
+$(document).on("click touchstart","#next-page",function  (argument) {
 	$('.book').turn('next');	
 })// #home-page...
 
 
-$(document).on("click","#btn-header-thumbnails",function  (argument) {
+$(document).on("click touchstart","#btn-header-thumbnails",function  (argument) {
 	$(".thumbnails").toggle();
 	if( $("#btn-header-thumbnails").hasClass("is-active") ){
 		$("#btn-header-thumbnails").removeClass("is-active");
@@ -963,12 +968,12 @@ $(document).on("click","#btn-header-thumbnails",function  (argument) {
 })// #home-page...
 
 
-$(document).on("click",".close-thumbnails",function  (argument) {
+$(document).on("click touchstart",".close-thumbnails",function  (argument) {
 	$(".thumbnails").hide();
  	$("#btn-header-thumbnails").removeClass("is-active"); 
 })// #home-page...
 
-$(document).on("click",".item-thumbnails",function  (argument) {
+$(document).on("click touchstart",".item-thumbnails",function  (argument) {
 $('.book').turn('page', $(this).index());
 	$(".thumbnails").hide();
  	$("#btn-header-thumbnails").removeClass("is-active"); 
@@ -1624,7 +1629,7 @@ function addRegion(region, pageElement) {
 		reg.appendTo(pageElement);
 }//end addRegion
 
-// Process click on a region
+// Process click touchstart on a region
 
 function regionClick(event) {
 
@@ -1975,11 +1980,11 @@ $(".chi-elm").draggable({
     },
 });
 
-$(document).on("click",".item-ressource",function  (argument) {
+$(document).on("click touchstart",".item-ressource",function  (argument) {
   $("#mesressources").hide();
 })// body...
 
-$(document).on("click",".anchor",async function  (argument) {
+$(document).on("click touchstart",".anchor",async function  (argument) {
   $(".edit-video-book-reader").hide();
   $(".edit-audio-book-reader").hide();
   $(".edit-yt-book-reader").hide();
@@ -2070,13 +2075,13 @@ $(this).css("left" , l);
 
      );
   }
-})// click...
+})// click touchstart...
 
 
 
 
 
-$(document).on("click",".btn-modal-delete-video",async function  ( ) {
+$(document).on("click touchstart",".btn-modal-delete-video",async function  ( ) {
   $(this).next().next().show();
   var uniqueid = $(this).parent().attr("uniqueid");
   ////console.log( uniqueid );
@@ -2092,12 +2097,12 @@ var s = await removeRowDB({id:uniqueid});
 ////console.log(s);
 
 
-}) // click...
+}) // click touchstart...
 
 
 
 
-$(document).on("click",".btn-modal-save-video", async function  (argument) {
+$(document).on("click touchstart",".btn-modal-save-video", async function  (argument) {
  
 var uniqueId = $(this).parent().attr("uniqueid");
 var type_elm_enrichi = "video";
@@ -2167,11 +2172,11 @@ else{
 }
 //////console.log(s);
 
-}) // click...
+}) // click touchstart...
 
 
 
-$(document).on("click",".edit-video-book-reader",function  ( ) {
+$(document).on("click touchstart",".edit-video-book-reader",function  ( ) {
   var title = $(this).parent().parent().find(".title-header-book").html();
   var url =   $(this).attr("url");
   url = atob(url);
@@ -2241,9 +2246,9 @@ var ouvrir_str_check = '';
 
 $("#"+idforhelpvalueyrl).val(url);
 
-})// click...
+})// click touchstart...
 
-$(document).on("click",".anchor-video,.ITMRSanchor-video",function  (argument) {
+$(document).on("click touchstart",".anchor-video,.ITMRSanchor-video",function  (argument) {
 var id =  getID ();
 var title = $(this).attr("title");
 ////console.log( $(this) )
@@ -2366,7 +2371,7 @@ function removeRowDB (obj) {
 
 
 
-$(document).on("click",".btn-modal-delete-audio",async function  ( ) {
+$(document).on("click touchstart",".btn-modal-delete-audio",async function  ( ) {
 
 
   $(this).next().next().show();
@@ -2383,12 +2388,12 @@ $(document).on("click",".btn-modal-delete-audio",async function  ( ) {
   //console.log(s);
 
 
-}) // click...
+}) // click touchstart...
 
 
 
 
-$(document).on("click",".btn-modal-save-audio", async function  (argument) {
+$(document).on("click touchstart",".btn-modal-save-audio", async function  (argument) {
  
 var uniqueId = $(this).parent().attr("uniqueid");
 var type_elm_enrichi = "audio";
@@ -2462,11 +2467,11 @@ else{
 }
 ////console.log(s);
 prepareRessources (  )
-}) // click...
+}) // click touchstart...
 
 
 
-$(document).on("click",".edit-audio-book-reader",function  ( ) {
+$(document).on("click touchstart",".edit-audio-book-reader",function  ( ) {
   var title = $(this).parent().parent().find(".title-header-book").html();
   var url =   $(this).attr("url");
   url = unescape(atob(url));
@@ -2531,9 +2536,9 @@ $(document).on("click",".edit-audio-book-reader",function  ( ) {
 
 $("#"+idforhelpvalueyrl).val(url);
 
-})// click...
+})// click touchstart...
 
-$(document).on("click",".anchor-audio,.ITMRSanchor-audio",function  (argument) {
+$(document).on("click touchstart",".anchor-audio,.ITMRSanchor-audio",function  (argument) {
 
 
 var id =  getID ();
@@ -2654,7 +2659,7 @@ function removeRowDB (obj) {
  
 
 
-$(document).on("click",".btn-modal-delete-yt",async function  ( ) {
+$(document).on("click touchstart",".btn-modal-delete-yt",async function  ( ) {
   $(this).next().next().show();
   var uniqueid = $(this).parent().attr("uniqueid");
   //console.log( uniqueid );
@@ -2670,12 +2675,12 @@ var s = await removeRowDB({id:uniqueid});
 //console.log(s);
 
 
-}) // click...
+}) // click touchstart...
 
 
 
 
-$(document).on("click",".btn-modal-save-yt", async function  (argument) {
+$(document).on("click touchstart",".btn-modal-save-yt", async function  (argument) {
  
 var uniqueId = $(this).parent().attr("uniqueid");
 var type_elm_enrichi = "yt";
@@ -2734,11 +2739,11 @@ if( s != 'error' ){
 }//end error
 ////console.log(s);
 
-}) // click...
+}) // click touchstart...
 
 
 
-$(document).on("click",".edit-yt-book-reader",function  ( ) {
+$(document).on("click touchstart",".edit-yt-book-reader",function  ( ) {
   var title = $(this).parent().parent().find(".title-header-book").html();
   var url =   $(this).attr("url");
   url = atob(url);
@@ -2794,9 +2799,9 @@ var idforhelpvalueyrl =  getID ();
 
 $("#"+idforhelpvalueyrl).val(url);
 
-})// click...
+})// click touchstart...
 
-$(document).on("click",".anchor-yt,.ITMRSanchor-yt",function  (argument) {
+$(document).on("click touchstart",".anchor-yt,.ITMRSanchor-yt",function  (argument) {
 var id =  getID ();
 var title = $(this).attr("title");
 var w = $(this).attr("w");
@@ -2905,7 +2910,7 @@ function removeRowDB (obj) {
 
 
 
-$(document).on("click",".btn-modal-delete-app",async function  ( ) {
+$(document).on("click touchstart",".btn-modal-delete-app",async function  ( ) {
   $(this).next().next().show();
   var uniqueid = $(this).parent().attr("uniqueid");
   //console.log( uniqueid );
@@ -2921,12 +2926,12 @@ var s = await removeRowDB({id:uniqueid});
 //console.log(s);
 
 
-}) // click...
+}) // click touchstart...
 
 
 
 
-$(document).on("click",".btn-modal-save-app", async function  (argument) {
+$(document).on("click touchstart",".btn-modal-save-app", async function  (argument) {
  
 var uniqueId = $(this).parent().attr("uniqueid");
 var type_elm_enrichi = "app";
@@ -2996,11 +3001,11 @@ else{
 }
 ////console.log(s);
 
-}) // click...
+}) // click touchstart...
 
 
 
-$(document).on("click",".edit-app-book-reader",function  ( ) {
+$(document).on("click touchstart",".edit-app-book-reader",function  ( ) {
   var title = $(this).parent().parent().find(".title-header-book").html();
   var url =   $(this).attr("url");
   url = atob(url);
@@ -3072,9 +3077,11 @@ var ouvrir_str_check = '';
 
 $("#"+idforhelpvalueyrl).val(url);
 
-})// click...
+})// click touchstart...
 
-$(document).on("click",".anchor-app,.ITMRSanchor-app",function  (argument) {
+$(document).on("click touchstart",".anchor-app,.ITMRSanchor-app",function  (e) {
+  e.stopPropagation();
+  e.preventDefault();
 var id =  getID ();
 var title = $(this).attr("title");
 //console.log( $(this) )
@@ -3196,7 +3203,7 @@ function removeRowDB (obj) {
 
 
 
-$(document).on("click",".btn-modal-delete-link-page",async function  ( ) {
+$(document).on("click touchstart",".btn-modal-delete-link-page",async function  ( ) {
   $(this).next().next().show();
   var uniqueid = $(this).parent().attr("uniqueid");
   //console.log( uniqueid );
@@ -3212,12 +3219,12 @@ var s = await removeRowDB({id:uniqueid});
 //console.log(s);
 
 
-}) // click...
+}) // click touchstart...
 
 
 
 
-$(document).on("click",".btn-modal-save-link-page", async function  (argument) {
+$(document).on("click touchstart",".btn-modal-save-link-page", async function  (argument) {
  
 var uniqueId = $(this).parent().attr("uniqueid");
 var type_elm_enrichi = "link-page";
@@ -3281,10 +3288,10 @@ else{
 }
 ////console.log(s);
 
-}) // click...
+}) // click touchstart...
 
 
-$(document).on("click",".anchor-link-page,.ITMRSanchor-link-page",async function  (argument) {
+$(document).on("click touchstart",".anchor-link-page,.ITMRSanchor-link-page",async function  (argument) {
 
 
 
@@ -3419,7 +3426,7 @@ function removeRowDB (obj) {
 
 
 
-$(document).on("click",".btn-modal-delete-link",async function  ( ) {
+$(document).on("click touchstart",".btn-modal-delete-link",async function  ( ) {
   $(this).next().next().show();
   var uniqueid = $(this).parent().attr("uniqueid");
   //console.log( uniqueid );
@@ -3435,12 +3442,12 @@ var s = await removeRowDB({id:uniqueid});
 //console.log(s);
 
 
-}) // click...
+}) // click touchstart...
 
 
 
 
-$(document).on("click",".btn-modal-save-link", async function  (argument) {
+$(document).on("click touchstart",".btn-modal-save-link", async function  (argument) {
  
 var uniqueId = $(this).parent().attr("uniqueid");
 var type_elm_enrichi = "link";
@@ -3504,10 +3511,10 @@ else{
 }
 ////console.log(s);
 
-}) // click...
+}) // click touchstart...
 
 
-$(document).on("click",".anchor-link,.ITMRSanchor-link",async function  (argument) {
+$(document).on("click touchstart",".anchor-link,.ITMRSanchor-link",async function  (argument) {
 
 var uniqueid =  $(this).attr("id");
 var id =  getID ();
@@ -3638,15 +3645,15 @@ function removeRowDB (obj) {
 
 $(".header-btn-edit").show();
 
-$(document).on("click",".close-login-iframe",function  ( e ) {
+$(document).on("click touchstart",".close-login-iframe",function  ( e ) {
  
 	$("#parent-iframe").hide();
 	
-})// click...
+})// click touchstart...
 
-$(document).on("click",".app-icon-login",function  ( e ) {
+$(document).on("click touchstart",".app-icon-login",function  ( e ) {
 
 	//console.log("fff")
 	window.location.href='/logout'
 	
-})// click...
+})// click touchstart...
