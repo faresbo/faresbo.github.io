@@ -159,7 +159,10 @@ interact('.element-to-drag')
   });
   function dragMoveListener (event) {
     var sF = corsf;
-    console.log(corsf)
+    console.log(corsf);
+    if(!corsf){
+    corsf = 1;
+    }  
     sF = 1;
     var target = event.target;
     var  x = ((parseFloat(target.getAttribute('data-x')) || 0) + event.dx / corsf);
