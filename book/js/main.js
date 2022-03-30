@@ -802,7 +802,7 @@ $(window).click(function() {
   //Hide the menus if visible
 $(".app-ressources").removeClass("is-active")
 $("#mesressources").hide();
-$(".thumbnails").hide();
+//$(".thumbnails").hide();
 
 });
 
