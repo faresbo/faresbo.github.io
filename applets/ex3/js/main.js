@@ -1,3 +1,21 @@
+var myscale = 1;
+function _loadWorkStudent ( data ) {
+ ////console.log( data );
+ var data = atob(data);
+ data = JSON.parse(data);
+//console.log(data);
+
+ for (var i = 0; i < data.length; i++) {
+   //data[i]
+   $(".element-to-drag").eq(i).css("top",data[i].top);
+   $(".element-to-drag").eq(i).css("left",data[i].left);
+ };
+
+
+
+}// _loadWorkStudent...
+
+
 $(document).ready(function () {
 
 
@@ -35,6 +53,8 @@ $(window).on("resize",function  () {
 
   var zoomFactor= (145.5 * $("img").width())/1230;
   var corsf = (zoomFactor / 100);
+  myscale = (zoomFactor / 100);
+  //console.log( zoomFactor );
 
   $("#scalefix").html('.scalefix{transform : scale('+ zoomFactor/100 +')}');
 
@@ -75,7 +95,7 @@ $(document).on("click",".read-mot",function  (argument) {
   return;
 var msg = new SpeechSynthesisUtterance();
 var voices = window.speechSynthesis.getVoices();
-console.log(voices);
+////console.log(voices);
 msg.voice = voices[0]; 
 
 /*
@@ -117,7 +137,7 @@ setTimeout(function  (argument) {
 var url_string = window.location.href; //window.location.href
 var url = new URL(url_string);
 var c = url.searchParams.get("mode");
-console.log(c);
+////console.log(c);
 if( c == "auto" ){
 
 }else{
@@ -153,20 +173,21 @@ interact('.element-to-drag')
           $(event.target).css("left",$(event.target).attr("_oleft")+"%");
           $(event.target).css("top",$(event.target).attr("_otop")+ "%");
           $(event.target).attr("myans", "");
-          //console.log("Revert this element to the original position");
+          //////console.log("Revert this element to the original position");
         }//end if
     }
   });
   function dragMoveListener (event) {
     var sF = corsf;
-    console.log(corsf);
+    ////console.log(corsf);
     if(!corsf){
     corsf = 1;
     }  
     sF = 1;
+    ////console.log(corsf);
     var target = event.target;
-    var  x = ((parseFloat(target.getAttribute('data-x')) || 0) + event.dx / corsf);
-    var  y = ((parseFloat(target.getAttribute('data-y')) || 0) + event.dy / corsf);
+    var  x = ((parseFloat(target.getAttribute('data-x')) || 0) + event.dx / myscale);
+    var  y = ((parseFloat(target.getAttribute('data-y')) || 0) + event.dy / myscale);
     target.style.webkitTransform =
     target.style.transform =
       'translate(' + x + 'px, ' + y + 'px)';
@@ -193,26 +214,25 @@ interact('.drop-zone').dropzone({
   },
   ondrop: function (event) {
 
-console.log( $(event.relatedTarget).attr('ans'));
-console.log( $(event.target).attr('ans') );
+
 
 $(event.relatedTarget).css("left",$(event.target).attr("_left")+"%");
 $(event.relatedTarget).css("top",$(event.target).attr("_top")+"%");
 $(event.relatedTarget).addClass("justdroped")
 $(event.relatedTarget).attr("myans",$(event.target).attr('ans'))
 /*
-console.log($(event.relatedTarget).attr('ans'));
-console.log($(event.target).attr('ans'));
+////console.log($(event.relatedTarget).attr('ans'));
+////console.log($(event.target).attr('ans'));
 
 $(event.relatedTarget).css("opacity","1");
 
-console.log('change top left')
-console.log(event.relatedTarget)
+////console.log('change top left')
+////console.log(event.relatedTarget)
 
 $(event.relatedTarget).css("left",$(event.relatedTarget).attr("_left")+"%");
 $(event.relatedTarget).css("top",$(event.relatedTarget).attr("_top")+"%");
-console.log($(event.target).attr("_left"))
-console.log(event.relatedTarget)
+////console.log($(event.target).attr("_left"))
+////console.log(event.relatedTarget)
 
 */
 if( $(event.relatedTarget).attr('ans') == $(event.target).attr('ans')  ){
@@ -238,7 +258,7 @@ if( $(event.relatedTarget).attr('ans') == $(event.target).attr('ans')  ){
         var answerUser = $(event.relatedTarget).attr("data-letter");
         var corAns = parseInt($(event.target).next(".q-op").children("span").text()) + parseInt($(event.target).next(".q-op").children("i").text());
         var prog = $(event.target).closest(".wrap-question").attr("wcar");
-      console.log('hello!');
+      ////console.log('hello!');
       */
   },
 
@@ -264,21 +284,21 @@ if( $(event.relatedTarget).attr('ans') == $(event.target).attr('ans')  ){
 
 
 $(document).on("click",".btn-verifier",function  (argument) {
-  console.log("verifie on ajouter un box shadow red")
+  ////console.log("verifie on ajouter un box shadow red")
   //    box-shadow: 0 0 10px red;
 
 
 $(".element-to-drag").each(function  (argument) {
-  console.log( $(this).attr("myans") , $(this).attr("ans") );
+  ////console.log( $(this).attr("myans") , $(this).attr("ans") );
   if( $(this).attr("myans") == $(this).attr("ans")  ){
-    console.log("Right anwser!");
+    ////console.log("Right anwser!");
     $(this).css("box-shadow","0 0 10px green");
   }else{
     $(this).css("box-shadow","0 0 10px red");
 
-    console.log("false anwser!")
+    ////console.log("false anwser!")
   }
-  console.log( );
+  ////console.log( );
 })// each...
 
 
@@ -302,19 +322,19 @@ for (var i = 0; i < $(".element-to-drag").length; i++) {
 
  
 
-alert("Send score ,data,user,activite_id escape+btoa")
+//alert("Send score ,data,user,activite_id escape+btoa")
 /*
 $(".element-to-drag").each(function  (argument) {
-  console.log( $(this).attr("myans") , $(this).attr("ans") );
+  ////console.log( $(this).attr("myans") , $(this).attr("ans") );
   if( $(this).attr("myans") == $(this).attr("ans")  ){
-    console.log("Right anwser!");
+    ////console.log("Right anwser!");
     $(this).css("box-shadow","0 0 10px green");
   }else{
     $(this).css("box-shadow","0 0 10px red");
 
-    console.log("false anwser!")
+    ////console.log("false anwser!")
   }
-  console.log( );
+  ////console.log( );
 })// each...
 */
 
@@ -325,6 +345,34 @@ $(".element-to-drag").each(function  (argument) {
  })//end ready
 
 
+function _getResponce ( ) {
+
+
+  
+var nbr_good = 0;
+var nbr_tot = $(".element-to-drag").length;
+var data_  = [];
+for (var i = 0; i < $(".element-to-drag").length; i++) {
+  data_.push({
+    ind : i,
+    top :  $(".element-to-drag").eq(i)[0].style.top,
+    left : $(".element-to-drag").eq(i)[0].style.left,
+  })
+  if( $(".element-to-drag").eq(i).attr("myans") == $(".element-to-drag").eq(i).attr("ans")  ){
+    //$(".element-to-drag").eq(i).css("box-shadow","0 0 10px green");
+    nbr_good+=1;
+  }else{
+    //$(".element-to-drag").eq(i).css("box-shadow","0 0 10px red");
+  }
+};
+var score = (nbr_good / nbr_tot) * 100;
+ 
+
+  return {
+    score: score,
+    data : JSON.stringify(data_),
+  };
+}// getResponce...
 
 
 
