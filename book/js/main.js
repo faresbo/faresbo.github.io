@@ -4,7 +4,7 @@ let check = false;
 check = false;
 if(  check ){
 
-$("body").append(`<div id="modal" class="modal is-active" style="    z-index: 99999999999999999999999;">
+$("body").append(`<div id="modal" class="modal is-activ" style="    z-index: 99999999999999999999999;">
   <div class="modal-background" style="background:black;"></div>
   <div class="modal-content">
     <div class="box">
