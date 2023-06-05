@@ -1,0 +1,79 @@
+html{
+overflow-x: hidden;
+}
+body {
+min-height: 90vh;
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+align-content: flex-start;
+font-family: roboto,sans-serif;
+font-style: normal;
+font-weight: 300;
+font-smoothing: antialiased;
+font-size: 15px;
+background: #eee;
+padding: 0 6rem;}
+
+header {position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    justify-content: right;
+    background: #fff;
+    color: #333;
+    line-height: 1.5;
+    text-align: center;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
+    padding: 12px;
+    /* font-size: 1.5em; */
+    padding: 16px;
+    /* font-weight: bold; */
+    transform: translateX(-30px);
+}
+.card{
+width: 300px;
+display: inline-block;
+background: white;
+padding-bottom: 10px;
+margin: 10px;
+position: relative;
+box-shadow: 1px 4px 11px 0 rgba(0,0,0,0.52);
+box-shadow: 1px 4px 15px 0 rgba(0,0,0,0.32);
+border-radius: 10px;
+}
+.card__img {
+display: block;
+width: 100%;
+/*
+height: 18rem;
+*/
+object-fit: cover;
+/* border: 3px solid #545454; */
+/*
+box-shadow: 1px 4px 11px 0 rgba(0,0,0,0.52);
+*/
+/*border-radius: 10px;
+
+border-bottom: 4px solid #cdcdcd;
+*/
+box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+}
+.card__btn {
+/*
+display: block;
+width: 100%;
+padding: 1.5rem;
+font-size: 2rem;
+text-align: center;
+color: #3363ff;
+background-color: #e6ecff;
+border: none;
+border-radius: 0.4rem;
+transition: .2s;
+cursor: pointer;
+*/
+}
