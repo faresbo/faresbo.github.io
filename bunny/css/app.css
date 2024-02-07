@@ -49,6 +49,7 @@ top: 0;
 right: -35px;
 text-align: center;
 text-align:rigth;width:175px;right:0;width: 248px;
+     right: calc(50% - 124px);
 }
  
 nav .btn {
