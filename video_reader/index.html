@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" style="background:black;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Width Video</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh; /* or use object-fit: cover; */
+      object-fit: contain; /* maintain aspect ratio while filling container */
+    }
+  </style>
+</head>
+<body>
+  <video src="input.mkv" controls autoplay loop muted></video>
+</body>
+</html>
