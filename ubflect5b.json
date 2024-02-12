@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1707122642967,
+    "title": "Exmeple ressource video",
+    "page": 4,
+    "book_id": "ubmt5b",
+    "type": "video",
+    "url": "https://faresbo.github.io/Family/"
+  },
+  {
+    "id": 1707122642968,
+    "title": "Exmeple ressource app",
+    "page": 3,
+    "book_id": "ubmt5b",
+    "type": "video",
+    "url": "https://faresbo.github.io/bunny/"
+  },
+  {
+    "id": 1707122642969,
+    "title": "Video immersive reader",
+    "page": 3,
+    "book_id": "ubmt5b",
+    "type": "video",
+    "url": "https://faresbo.github.io/video_reader/"
+  }
+]
