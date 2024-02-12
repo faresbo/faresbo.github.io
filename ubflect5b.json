@@ -22,5 +22,13 @@
     "book_id": "ubmt5b",
     "type": "video",
     "url": "https://faresbo.github.io/video_reader/"
+  },
+  {
+    "id": 1707122642970,
+    "title": "L'école",
+    "page": 10,
+    "book_id": "ubmt5b",
+    "type": "video",
+    "url": "https://faresbo.github.io/ressources/p_10_imm_reader_ecole/index.html"
   }
 ]
