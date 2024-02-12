@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Immersive Reader Example</title>
+<script type='text/javascript' src='https://ircdname.azureedge.net/immersivereadersdk/immersive-reader-sdk.1.4.0.js'></script>
+</head>
+<body>
+
+<svg style="
+    display: inline-block;
+    position: fixed;
+    top: 15px;
+    left: 10px;
+    fill: white;
+    z-index: 1001;
+    zoom: 2;
+    background: #111111;
+    border-radius: 5px " xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m276.846-460 231.693 231.692L480-200 200-480l280-280 28.539 28.308L276.846-500H760v40H276.846Z"/></svg>
+
+<p id="content" style="opacity:0;">This is some example content you can read with Immersive Reader.</p>
+<div id="btn-ir" style="opacity:0;" class='immersive-reader-button' onclick='launchImmersiveReader()'></div>
+
+  <script>
+  
+  
+const url = `https://login.microsoftonline.com/3fd9253d-8ea5-423a-822d-ae65c988e94c/oauth2/v2.0/token`;
+
+const data = new URLSearchParams();
+data.append('grant_type', 'client_credentials');
+data.append('client_id', "89f6920b-72d9-4897-8a37-067a30c0f17b");
+data.append('client_secret', "_jy8Q~aA206BwIeUsrzhiOP6SG2B2x5rpV~~icVd");
+data.append('scope', 'https://cognitiveservices.azure.com/.default');
+console.log(data);
+  /*
+   DisplayOptions :{
+	   
+	   themeOption : "Light"
+	   },*/
+   async function launchImmersiveReader() {
+   const options = {
+   uiLang:"fr-FR",
+       allowFullscreen : false ,
+	  
+
+    readAloudOptions: {
+        autoplay: true,
+		voice: 'male'
+    }
+};
+const htmlContent = document.getElementById('content').innerHTML;
+
+    const content = {
+        title: 'Immersive Reader',
+        chunks: [ {
+             content: htmlContent,
+        mimeType: 'text/html',
+			lang:"en-EN",
+        } ]
+    };
+	
+	var token = await getJWT();
+	console.log(token);
+	
+	
+    ImmersiveReader.launchAsync( token 
+	, 'helperImmersiveReader', content , options);
+}
+
+
+document.addEventListener("DOMContentLoaded",  function() {
+  // This function will be called when the DOM is fully loaded
+  // Find the element by its ID
+  var element = document.getElementById("btn-ir");
+  
+  // Check if the element exists
+  if (element) {
+    // Trigger a click on the element
+	
+    element.click();
+  } else {
+    console.error("Element with ID 'your_element_id' not found.");
+  }
+});
+
+
+
+
+function getJWT (   ) {
+  return new Promise( async resolve => {
+    
+	
+fetch(url, {
+    method: 'POST',
+	  mode: 'no-cors',
+
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: data,
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.json();
+})
+.then(data => {
+    resolve( data.access_token);
+})
+.catch(error => {
+    resolve(error);
+});
+	
+	
+  })  
+
+}// getDataW...
+
+ 
+
+
+
+
+var interval = setInterval(function(){
+
+
+// Assuming your iframe has the ID 'myIframe'
+var iframe = document.getElementsByTagName('iframe');
+console.log(iframe.length)
+iframe = iframe[0]
+// Accessing the iframe's contentWindow and contentDocument
+var iframeWindow = iframe.contentWindow;
+var iframeDocument = iframe.contentDocument || iframeWindow.document;
+console.log(iframeDocument)
+
+// Check if the iframeDocument is accessible and loaded
+if (iframeDocument) {
+    // Now you can manipulate the iframe's content
+    var elementToRemove = iframeDocument.querySelector('#appReaderTitle');
+    var elementToRemove_exit = iframeDocument.querySelector('#exitButton');
+	
+    if (elementToRemove) {
+        // Remove the element if found
+        elementToRemove.remove();
+        //elementToRemove_exit.remove();
+		console.log("i clear the intervall")
+		  clearInterval(interval); // Clear the interval
+
+    } else {
+        console.error("Element with ID 'appReaderTitle' not found inside the iframe.");
+    }
+} else {
+    console.error("Unable to access iframe's content document.");
+}
+
+
+}, 1000); // Execute myFunction every 1000 milliseconds (1 second)
+
+
+
+
+
+/**/
+
+  </script>
+  <style>
+  #appReaderTitle{
+  display:none;
+  }
+  
+  </style>
+</body>
+</html>
