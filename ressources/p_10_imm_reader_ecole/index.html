@@ -82,9 +82,9 @@ const htmlContent = document.getElementById('content').innerHTML;
         } ]
     };
 	
-	//var token = await getJWT();
-	//console.log(token);
-	var token =  'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImtXYmthYTZxczh3c1RuQndpaU5ZT2hIYm5BdyIsImtpZCI6ImtXYmthYTZxczh3c1RuQndpaU5ZT2hIYm5BdyJ9.eyJhdWQiOiJodHRwczovL2NvZ25pdGl2ZXNlcnZpY2VzLmF6dXJlLmNvbSIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzNmZDkyNTNkLThlYTUtNDIzYS04MjJkLWFlNjVjOTg4ZTk0Yy8iLCJpYXQiOjE3MDc3NTIyMTAsIm5iZiI6MTcwNzc1MjIxMCwiZXhwIjoxNzA3NzU2MTEwLCJhaW8iOiJFMlZnWU9COE5FZXlnNU81WW5rY2N6aFRMcjhXQUE9PSIsImFwcGlkIjoiODlmNjkyMGItNzJkOS00ODk3LThhMzctMDY3YTMwYzBmMTdiIiwiYXBwaWRhY3IiOiIxIiwiaWRwIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvM2ZkOTI1M2QtOGVhNS00MjNhLTgyMmQtYWU2NWM5ODhlOTRjLyIsIm9pZCI6IjE1YjkxNGUyLWI0ZGYtNDBkOS1hZjdkLWFhMTlkYjhjMTgxZCIsInJoIjoiMC5BYTRBUFNYWlA2V09Pa0tDTGE1bHlZanBUSkFpTVgzSUtEeEhvTzJPVTNTYmJXMnJBQUEuIiwic3ViIjoiMTViOTE0ZTItYjRkZi00MGQ5LWFmN2QtYWExOWRiOGMxODFkIiwidGlkIjoiM2ZkOTI1M2QtOGVhNS00MjNhLTgyMmQtYWU2NWM5ODhlOTRjIiwidXRpIjoickpreVJDZ093a1N3SGFNaWNXaVNBQSIsInZlciI6IjEuMCJ9.iQokInQdnn5FyQcitYWEmiWJ9CTBLhdsvmNo8-LtE9IvR9TtVPGB8EZTWQ81pGJ6IDanEOFOPzKd4vCcxDtLICuvFqSJdeg4jhGvQ3uH19O2cT6djD3WfTh5gCZPGqF_T851K7WMWmwdH8AqSbAm75cWxDlVrm3Ea1hZX6DrS2L7JtFvli_q6hwYUHkB1GQVitDKKHA_7fstIZq1hT2ABq-0ugGdGjKrSCCOEZBkhiBxkIZ0afDPwAPcfAQdCO0lP3yXGX3yqXjQ-dZ1T44g044hQ1ybnL95QKsOms4xrEIQvU_hm7ZhLn-Uo87UxumEKJiCuhepxmbrFg_sQP3MPw'
+	var token = await getJWT();
+	console.log(token);
+	//var token =  'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImtXYmthYTZxczh3c1RuQndpaU5ZT2hIYm5BdyIsImtpZCI6ImtXYmthYTZxczh3c1RuQndpaU5ZT2hIYm5BdyJ9.eyJhdWQiOiJodHRwczovL2NvZ25pdGl2ZXNlcnZpY2VzLmF6dXJlLmNvbSIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzNmZDkyNTNkLThlYTUtNDIzYS04MjJkLWFlNjVjOTg4ZTk0Yy8iLCJpYXQiOjE3MDc3NTIyMTAsIm5iZiI6MTcwNzc1MjIxMCwiZXhwIjoxNzA3NzU2MTEwLCJhaW8iOiJFMlZnWU9COE5FZXlnNU81WW5rY2N6aFRMcjhXQUE9PSIsImFwcGlkIjoiODlmNjkyMGItNzJkOS00ODk3LThhMzctMDY3YTMwYzBmMTdiIiwiYXBwaWRhY3IiOiIxIiwiaWRwIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvM2ZkOTI1M2QtOGVhNS00MjNhLTgyMmQtYWU2NWM5ODhlOTRjLyIsIm9pZCI6IjE1YjkxNGUyLWI0ZGYtNDBkOS1hZjdkLWFhMTlkYjhjMTgxZCIsInJoIjoiMC5BYTRBUFNYWlA2V09Pa0tDTGE1bHlZanBUSkFpTVgzSUtEeEhvTzJPVTNTYmJXMnJBQUEuIiwic3ViIjoiMTViOTE0ZTItYjRkZi00MGQ5LWFmN2QtYWExOWRiOGMxODFkIiwidGlkIjoiM2ZkOTI1M2QtOGVhNS00MjNhLTgyMmQtYWU2NWM5ODhlOTRjIiwidXRpIjoickpreVJDZ093a1N3SGFNaWNXaVNBQSIsInZlciI6IjEuMCJ9.iQokInQdnn5FyQcitYWEmiWJ9CTBLhdsvmNo8-LtE9IvR9TtVPGB8EZTWQ81pGJ6IDanEOFOPzKd4vCcxDtLICuvFqSJdeg4jhGvQ3uH19O2cT6djD3WfTh5gCZPGqF_T851K7WMWmwdH8AqSbAm75cWxDlVrm3Ea1hZX6DrS2L7JtFvli_q6hwYUHkB1GQVitDKKHA_7fstIZq1hT2ABq-0ugGdGjKrSCCOEZBkhiBxkIZ0afDPwAPcfAQdCO0lP3yXGX3yqXjQ-dZ1T44g044hQ1ybnL95QKsOms4xrEIQvU_hm7ZhLn-Uo87UxumEKJiCuhepxmbrFg_sQP3MPw'
 	
     ImmersiveReader.launchAsync( token 
 	, 'helperImmersiveReader', content , options);
@@ -112,28 +112,18 @@ document.addEventListener("DOMContentLoaded",  function() {
 function getJWT (   ) {
   return new Promise( async resolve => {
     
+    fetch('https://mobilite.lumiere.tn/gettokenir')
+    .then((response) => {
+      //resolve(response);
+      return response.text();
+    })
+    .then((myJson) => {
+      resolve(myJson);
+    }).catch((error) => {
+      ////console.error('Error:', error);
+      resolve("error");
+    });	
 	
-fetch(url, {
-    method: 'POST',
-	  mode: 'no-cors',
-
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: data,
-})
-.then(response => {
-    if (!response.ok) {
-        throw new Error('Network response was not ok');
-    }
-    return response.json();
-})
-.then(data => {
-    resolve( data.access_token);
-})
-.catch(error => {
-    resolve(error);
-});
 	
 	
   })  
