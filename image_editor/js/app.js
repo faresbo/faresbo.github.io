@@ -105,7 +105,9 @@ $(document).on("click","#download",function (e) {
  // Create link element
  var link = document.createElement('a');
  link.href = dataURL;
- link.download =   '100.png'; // Set the default filename for download
+  var filename = new Date().toISOString().replace(/[:.]/g, '-').replace('T', '_').replace(/\..+/, '') + '.txt';
+
+ link.download =   filename+'.png'; // Set the default filename for download
  link.click();
 
 })//end download
