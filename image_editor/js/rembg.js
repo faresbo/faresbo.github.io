@@ -32330,6 +32330,7 @@ fileUpload.addEventListener("change", function (b) {
   (a.onload = (u) => predict(u.target.result)), a.readAsDataURL(n);
 });
 async function predict(b) {
+  console.log(b);//good
   const n = await RawImage.fromURL(b);
   (imageContainer.innerHTML = ""),
     (imageContainer.style.backgroundImage = `url(${b})`);
