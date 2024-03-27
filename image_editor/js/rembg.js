@@ -32357,5 +32357,6 @@ async function predict(b) {
     (imageContainer.style.background =
       'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURb+/v////5nD/3QAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAUSURBVBjTYwABQSCglEENMxgYGAAynwRB8BEAgQAAAABJRU5ErkJggg==")'),
     (status.textContent = "Done!");
+  showMyimage(p);
 }
-alert("ya hoo");
+console.log("ya hoo");
