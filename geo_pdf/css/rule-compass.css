@@ -1,0 +1,259 @@
+﻿
+#rule{
+width:calc(((100 * 20.4) / 20.02) * 1%);
+height:10%;
+background-color:transparent;
+}
+#wrap-over-rule{
+overflow: hidden;
+}
+#texture-rule{
+background:url(../icons/my-regle2.png) no-repeat;
+background-size: 100%;
+background-position:50% 0%;
+
+}
+#texture-rule-b{
+width:100%;
+height: 44%;
+background-color:#ffcf12;
+background-color:transparent;
+
+}
+#wrap-pointer-origin{
+height: 60%;
+}
+#box-pointer-origin{
+background:;
+}
+
+#pointer-origin{
+width:1px;
+height: 100%;
+background: blue;
+opacity:0.4;
+}
+/*****************************************/
+#slider-origin{
+cursor: move;
+
+/*
+width:100%;
+width:100%;
+height:10%;
+*/
+-webkit-appearance: none;
+background: none;
+}
+#slider-origin:focus {
+outline: none;
+}
+#slider-origin::-webkit-slider-runnable-track {
+width: 100%;
+height: 100%;
+background:rgba(0,255,0,0.8);
+}
+
+#slider-origin::-webkit-slider-thumb{
+-webkit-appearance: none;
+border: none;
+position: relative;
+width: 3%;
+border-radius: 10%;
+cursor: e-resize;
+background:url(../icons/icon-origin.png) no-repeat;
+background-color:;
+background-size: 70%;
+background-position:50%;
+z-index: 100;
+}
+
+#slider-origin:active{
+/*visibility: hidden;*/
+}
+
+/************************************/
+
+
+/*****************************************/
+#slider-drawer{
+z-index: 10;
+width: 97%;
+height: 45%;
+-webkit-appearance: none;
+background: none;
+}
+#slider-drawer::-webkit-slider-thumb {
+-webkit-appearance: none;
+border: none;
+height: 100%;
+width: 1px;
+background: red;
+position: relative;
+color:#aaa;
+}
+#slider-drawer:focus {
+outline: none; 
+}
+#slider-drawer::-webkit-slider-runnable-track{
+width: 100%;
+height: 100%;
+background: #454f53;
+opacity: 0.1;
+cursor: crosshair;
+}
+
+/************************************/
+
+#handel-drag-rule{
+width: 100%;
+height: 83%;
+height: 70%;
+
+}
+
+
+#handel-drag-rule:hover{
+cursor: move;
+background: rgba(255,0,0,0.2);
+}
+#handel-rotate-rule{
+z-index: 100;
+background:#624d9f;
+border-radius:50%;
+opacity:0.3;
+cursor: default;
+}
+#handel-rotate-rule:hover{
+opacity:1;/**/
+}
+#handel-rotate-rule:active{
+opacity:1;
+}
+#handel-resize{
+width:5%;
+height: 100%;
+background: red;
+}
+/*****************************************/
+#slider-resize-rule{
+width:calc(((100 * 20.4) / 20.02) * 1%);
+height:0%;
+-webkit-appearance: none;
+background: none;
+}
+#slider-resize-rule:focus {
+outline: none;
+}
+#slider-resize-rule::-webkit-slider-runnable-track {
+width: 100%;
+height: 100%;
+background:rgba(0,255,0,0.9);
+}
+
+#slider-resize-rule::-webkit-slider-thumb{
+-webkit-appearance: none;
+border: none;
+background:url(../icons/handel-rule.png) no-repeat;
+background-color:#ffcf12;
+background-size: 100%;
+background-position:50%;
+position: relative;
+width: 3%;
+border-radius: 10%;
+cursor: e-resize;
+opacity: 1;
+}
+/************************************/
+#helper-rule{
+z-index: -1;
+width:calc( ( ((100 * 20.4) / 20.02) * 1% ) / 1  );
+height:10%;
+background: red;
+opacity: 0.0;
+}
+
+
+
+#slider-resize-compass {
+  -webkit-appearance: none;
+  background: none;
+}
+#slider-resize-compass:focus {
+  outline: none; 
+}
+#slider-resize-compass::-webkit-slider-runnable-track {
+width: 100%;
+height: 8.4px;
+height: 0px;
+background: #454f53;
+}
+#slider-resize-compass::-webkit-slider-thumb {
+-webkit-appearance: none;
+border: none;
+height: 20px;
+width: 24px;
+top:-12.5px;
+background: #54bbd5;
+border-radius:50%;
+position: relative;
+background: rgba(0,0,0,0.0);
+border-radius:0%;
+transform:rotate(27.5deg);
+transform:rotate(0deg);
+border-radius:50%;
+height: 28px;
+width: 28px;
+cursor:e-resize;
+}
+.box-handel{
+width:30px;
+height:30px;
+border-radius: 50%;
+cursor:url(../icons/rotate_ccw.png),default;
+
+}
+.box-handel-meni{
+width:30px;
+height:30px;
+background: blue;
+}
+#meniCompass{
+height: 10px;
+background:rgba(0,0,0,0.0);
+}
+
+#compassPencil{
+width:53px;
+height: 144px;
+background: rgba(0,0,255,0.7);
+background: url('../icons/supportPencil4.png') no-repeat;
+background-size: 100%;
+background-position: 50%;  
+}
+#headComass{
+width:41px;
+height: 77px;
+background: rgba(0,0,255,0.7);
+background: url('../icons/headCompaasjustcircle.png') no-repeat;
+background-size: 100%;
+background-position: 50%;
+}
+#compassIbra{
+width:38px;
+height: 201px;
+background: url('../icons/supportIbrawhitouthead.png') no-repeat;
+background-size: 100%;
+background-position: 50%;
+}
+#wrap-compass{
+width:10px;
+height:10px;
+background:rgba(0,0,0,0.9);
+}
+.box-white{
+width:10px;
+height:10px;
+background: blue;
+border-radius: 50%;
+}

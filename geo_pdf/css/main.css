@@ -1,0 +1,473 @@
+﻿html,body{
+/**/
+-webkit-user-select: none;
+-moz-user-select: none;
+user-select: none;
+position: relative;
+font-family:Tahoma;
+font-size: 12px;
+width:100%;
+height:100%;
+background: #8F9BA8;
+background: #fff;
+overflow:hidden;
+}
+
+
+/************************************/
+/***************/
+#top-header{
+position: fixed;
+top:0;
+z-index:99999999999;
+height: 50px;
+width: 100%;
+text-align: center;
+background: #0a6984;
+box-shadow: 0px 3px 5px rgba(0,0,0,0.4);
+}
+
+
+#btn-prev{
+display: inline-block;
+width: 45px;
+height: 47px;
+background: url(../icons/chevron-left.png) no-repeat;
+background-size: 45%;
+background-position: 50%;
+cursor: pointer;
+margin-top: 2px;
+}
+#btn-prev:active{
+background-color:#3991F5;
+}
+
+#btn-next{
+display: inline-block;
+width: 45px;
+height: 47px;
+background: url(../icons/chevron-right.png) no-repeat;
+background-size: 45%;
+background-position: 50%;
+cursor: pointer;
+margin-top: px;
+}
+#btn-next:active{
+background-color:#3991F5;
+}
+
+#label-page{
+display: inline-block;
+font-size: 12px;
+font-family: 'Open Sans','Helvetica Neue', Arial, sans-serif;
+color: white;
+overflow: hidden;
+line-height: 44px;
+vertical-align: baseline;
+}
+
+
+
+#btn-print{
+position: absolute;
+top:12px;
+right:45px;
+width: 27.5px;
+height: 25px;
+background: url(../icons/print1.png) no-repeat;
+background-size: 55%;
+background-position: 50%;
+cursor: pointer;
+border: solid 1px rgba(0,0,0,0.0);
+border-radius: 5px;
+}
+#btn-print:active{
+background-color:#3991F5;
+}
+#btn-zoom{
+position: absolute;
+top:12px;
+right:5px;
+width: 27.5px;
+height: 25px;
+background: url(../icons/zoombox.png) no-repeat;
+background-size: 55%;
+background-position: 50%;
+cursor: pointer;
+border: solid 1px rgba(0,0,0,0.2);
+border-radius: 5px;
+}
+#btn-zoom:active{
+background-color:#3991F5;
+}
+#btn-zoom.active{
+background-color:#3991F5;
+}
+
+/************************/
+#box-menu-print{
+z-index: 999999999999999;
+position: fixed;
+top:50px;
+top:55px;
+right:5px;
+width: 200px;
+height: 130px;
+background: #eee;
+background: #fff;
+box-shadow: 0 0 1em #000;
+background: #1d2e3c;
+color:#54bbd5;
+border-radius:10px;
+border-top-right-radius: 0;
+}
+.box-item-menu{
+color: #333;
+font-size: 12px;
+width:80%;
+padding-left: 8%;
+margin:0 auto;
+height:30px;
+line-height: 30px;
+font-family: Tahoma, Verdana, Arial, sans-serif;
+cursor: pointer;
+color:#eee;
+}
+.box-item-menu:hover{
+background: #eee;
+color:#333;
+}
+/**********
+
+
+
+
+
+
+/************************/
+
+#box-zoom{
+position: fixed;
+top:55px;
+right:5px;
+z-index: 999999999999999;
+width:250px;
+height:120px;
+background: #1d2e3c;
+border:1px solid #6e6e6e;
+border-radius:10px;
+border-top-right-radius: 0;
+
+}
+
+#box-btn-resetZoom{
+margin-top: 00px;
+width:20px;
+height: 20px;
+width:30px;
+height: 30px;
+background: url('../icons/reset-zoom-blue.png') no-repeat;
+background-size: 60%;
+background-position: 50%;
+}
+
+#box-btn-zoomOut{
+margin-top: 00px;
+width:20px;
+height: 20px;
+width:25px;
+height: 25px;
+background: url('../icons/btn-zoomOut.png') no-repeat;
+background-size: 80%;
+background-position: 50%;
+}
+
+#box-btn-zoomIn{
+margin-top: 00px;
+width:20px;
+height: 20px; 
+width:30px;
+height: 30px; 
+background: url('../icons/btn-zoomIn.png') no-repeat;
+background-size: 80%;
+background-position: 50%;
+}
+.btn-box-zoom{
+cursor: pointer;
+}
+.btn-box-zoom:active{
+opacity: 0.5;
+}
+
+.slider-input-zoom {
+  -webkit-appearance: none;
+  background: none;
+}
+.slider-input-zoom:focus {
+  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+.slider-input-zoom::-webkit-slider-runnable-track {
+width: 100%;
+height: 8.4px;
+background: #454f53;
+}
+.slider-input-zoom::before {
+content: "";
+width: 100%;
+height: 50px;
+background: transparent;
+position: absolute;
+top:-18px;
+z-index: -1;  
+}
+.slider-input-zoom::-webkit-slider-thumb {
+-webkit-appearance: none;
+border: none;
+height: 30px;
+width: 30px;
+top:-12.5px;
+background: #54bbd5;
+border-radius:50%;
+position: relative;
+}
+.slider-input-zoom{
+position:absolute;
+width: 80%;
+top:75px;
+left: 10%;
+background: transparent;
+opacity: 1;
+}
+
+
+
+/***************/
+/************************************/
+
+
+
+
+
+
+
+
+
+
+/************************************/
+/***************/
+#content{
+position: relative;
+top:50px;
+width: 100%;
+height: calc(100% - 50px);
+height: 100%;
+}
+
+
+.content-pageA4{
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: white;
+box-shadow: 0 0 10px rgba(0,0,0,0.5);
+transform-origin: 0px 0px;
+}
+/***************/
+/************************************/
+
+
+/**
+print
+*/
+#PrintPreview{
+width:100%;
+height:100%;
+position: absolute;
+top:0;
+left:0;
+z-index: 10001000;
+background: white;
+overflow: auto;
+}
+body{
+-webkit-print-color-adjust: exact; 
+}
+.pageAPrint{
+width: 20.02cm;
+height:25.79cm;
+margin: 0px auto;
+}
+ @page 
+{
+/*size: 20.02cm 25.8cm;   auto is the initial value */
+/*size:20.02cm 25.8cm;   auto is the initial value */
+size:8.5in 11in;  /* auto is the initial value */
+margin: 0%;  /* this affects the margin in the printer settings */
+/*padding: 0%;*/
+}
+.scalefix{
+transform-origin: 0% 0% 0px;
+}
+.page-break{
+page-break-after: always;   
+}
+*{
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;   
+}
+
+iframe#printIframeHelper{
+display:none;
+width:100%;
+height:100%;
+position: absolute;
+top:0;
+left:0;
+z-index: 10001000;
+background: white;
+overflow: auto;
+}
+.text-long-bar{
+background: black;
+position:absolute;
+}
+
+
+
+
+
+
+
+
+
+
+.btn-tool{
+  width:30px;
+  background: ;
+  cursor: pointer;
+  }
+  .btn-tool{
+  width:32px;
+  height: 32px;
+  border-radius: 50%;
+  background: ;
+  display: inline-block;
+  zoom:1.1;
+  margin: 5px ;
+  margin-right:5px ;
+  margin-right:15px ;
+  user-select: none;
+  }
+  .btn-tool svg{
+  fill:#005fad;
+  fill:#fff;
+  zoom: 1;
+  transform: translate(0px, 4px);
+  }
+  .btn-tool.active{
+  background: #005fad;
+  }
+  .btn-tool.active svg{
+  fill:#fff;
+  }
+  .btn-tool{
+  position: relative;
+  }
+  
+  
+
+
+
+.btn-color {
+width: 30px;
+background:;
+width: 30px;
+height: 25px;
+border-radius: 50%;
+background:;
+display: inline-block;
+zoom: 1;
+/* margin: 5px; */
+margin-right: 5px;
+margin-right: 0px;
+user-select: none;
+/* line-height: 42px; */
+/* text-align: center; */
+cursor: pointer;
+margin-right: 15px;
+transform: translateY(6px);
+filter:invert(-1);
+
+}
+
+.btn-color.active div{
+  outline: 6px solid #005fad !important;
+}
+
+
+.btn-size{
+width: 30px;
+background: ;
+width: 32px;
+height: 32px;
+border-radius: 50%;
+background: ;
+display: inline-block;
+zoom: 1;
+/* margin: 5px; */
+margin-right: 5px;
+margin-right: 0px;
+user-select: none;
+/* line-height: 42px; */
+/* text-align: center; */
+cursor: pointer;
+margin-right: 15px;
+transform: translateY(-2px);
+color: white;
+border: 2px solid transparent;
+line-height: 25px;
+font-weight: bold;
+}
+.btn-size.active{
+border: 2px solid white;
+}
+
+
+
+
+
+
+
+#foo{
+position: absolute;
+top: 50px;
+left: 0;
+width: 100%;
+height: calc( 100% - 50px ) !important;
+}
+#leftPane{
+background: ;
+overflow: hidden;
+}
+#rightPane{
+background: ;
+overflow: hidden;
+} 
+
+
+.vsplitter{
+z-index: 1;
+}
+
+.rec{
+filter: (-1);
+}
+.btn-color{
+  filter: invert(1);
+}

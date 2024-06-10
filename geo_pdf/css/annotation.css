@@ -1,0 +1,59 @@
+﻿#box-annotation{
+z-index: 1000000000;
+position: fixed;
+top:calc(50% - 80px);
+left:0;
+width:40px;
+height:223px;
+height:163px;
+box-shadow: 0 0 15px rgba(0,0,0,0.6);
+background:#EDCD50;
+border-top-right-radius: 10px;
+border-bottom-right-radius: 10px;
+}
+#mode-cursor{
+border-top-right-radius: 10px;
+display: inline-block;
+background: url(../icons/icon-cursor.png) no-repeat;
+background-size: 50%;
+background-position: 50%;
+cursor: pointer;
+}
+#mode-pencil{
+display: inline-block;
+background: url(../icons/icon-pencil.png) no-repeat;
+background-size: 50%;
+background-position: 50%;
+cursor: pointer;
+}
+
+#mode-marker{
+display: inline-block;
+background: url(../icons/icon-brush.png) no-repeat;
+background-size: 50%;
+background-position: 50%;
+cursor: pointer;
+}
+#mode-eraser{
+display: inline-block;
+background: url(../icons/icon-gomme.png) no-repeat;
+background-size: 50%;
+background-position: 50%;
+cursor: pointer;
+border-bottom-right-radius: 10px;
+}
+#box-annotation div{
+width: 40px;
+height: 40px;
+}
+#box-annotation div.active{
+background-color: white;
+}
+
+#content.drawMode .pageA4{
+cursor: crosshair;
+}
+
+#content.eraserMode .pageA4{
+cursor: crosshair;
+}
