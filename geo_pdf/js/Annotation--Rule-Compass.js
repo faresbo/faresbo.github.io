@@ -670,9 +670,9 @@ $("#wrap-meniCompass").rotatable({
 const newPath = document.createElementNS(svgNS, "path");
 
 // Set the attributes for the new path element
-newPath.setAttribute("style", "-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill: none; stroke: "+$(parent.document).find(".btn-color.active div").css("background-color")+";");
+newPath.setAttribute("style", "-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill: none; stroke: "+$(document).find(".btn-color.active div").css("background-color")+";");
 newPath.setAttribute("d", "");
-newPath.setAttribute("stroke-width", $(parent.document).find(".btn-size.active .box-size").html());
+newPath.setAttribute("stroke-width", $(document).find(".btn-size.active .box-size").html());
 newPath.setAttribute("id", TargetId);
 newPath.setAttribute("class", "x");
 newPath.setAttribute("transform", "");
