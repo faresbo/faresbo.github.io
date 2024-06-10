@@ -809,7 +809,7 @@ iframe.contentWindow.initDrawCompass( newPath );
 
                // if(document.getElementById(TargetId) !== null){
                 
-               var rect = $(parent.document).find("#PointercompassPencil")[0].getBoundingClientRect();
+               var rect = $(document).find("#PointercompassPencil")[0].getBoundingClientRect();
                var x = rect.right;
                var y = rect.top;
                var imp = "leftframe";
