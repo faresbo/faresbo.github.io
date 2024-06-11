@@ -779,6 +779,8 @@ overflow-x:hidden;
 
 </style>
 <script>
+     $("#file_choose").css( "z-index","9999999999999999999999999999999999999999999999" );
+  
   const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const paramValue = urlParams.get('p');
@@ -786,8 +788,7 @@ if( paramValue == "1" ){
    $("#file_choose").css( "left","31px" );
 }else{
   $("#file_choose").css( "left","calc( 100% - 62px )" );
-  $("#file_choose").css( "right","31px" );
-}
+c}
 </script>
   </body>
 </html>
