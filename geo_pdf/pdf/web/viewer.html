@@ -776,9 +776,17 @@ overflow-x:hidden;
     border-bottom: var(--toolbar-border-bottom);
     border-bottom:1px solid #ddd;
 }
-
+.textLayer{
+pointer-events:none;
+}
 </style>
 <script>
+
+    
+ document.addEventListener('contextmenu', function(event) {
+      event.preventDefault();
+ });
+	
      $("#file_choose").css( "z-index","9999999999999999999999999999999999999999999999" );
   
   const queryString = window.location.search;
