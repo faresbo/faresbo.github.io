@@ -1,5 +1,7 @@
 
 
+
+ 
  console.log( "Record!" );
 
  var __dirname = 'C:\Users\Fares.Bouali\Downloads\nwjs_helper_recorder_online';
@@ -101,6 +103,7 @@ var audioFiles = [];
   $("#btn-add-record").removeClass("anim-record");
   $("#btn-add-record").removeClass("start");
   $("#btn-add-record").removeClass("stop");
+  clearTimeout(timeoutID);
 
 })
 
@@ -123,6 +126,8 @@ $(document).on("click", "#btn-add-record-play", function (argument) {
 
 
  $(document).on("click", "#btn-add-record-stop", function (e) {
+  clearTimeout(timeoutID);
+
   $("#btn-add-record").hide();
   $(".loader-record").show();
   ffmpegProcess.stdin.setEncoding("utf8");
@@ -150,11 +155,15 @@ if( mediaRecorder.state != "inactive" ){
 
 
 
+function playRecord() {
 
+  $("#btn-add-record-pause").trigger("click");
+  $("#btn-add-record-play").trigger("click");
+ }
 
+let timeoutID = ""
 
 $(document).on("click", "#btn-add-record.start", async function (e) {//record video
-
 
 
 
@@ -163,13 +172,14 @@ $(document).on("click", "#btn-add-record.start", async function (e) {//record vi
   
 
 if (  $("#btn-add-record-stop").css("display") == "none" ){
+
+
     var a = await deleteAllFiles();
     var lisfiles =  fs.readdirSync(output);
     console.log(lisfiles);
     if( lisfiles.length > 0 ){
       window.location.reload();
-return;
-
+      return;
     }
 
 
@@ -185,9 +195,10 @@ $("#btn-add-record-pause").show();
  var name_out_file = new Date().toJSON().slice(0, 19).replace("T", "-").split("-").join("_").split(":").join("_") +"";
   console.log( output, name_out_file  );
 
-////var ffmpegArgs = [ '-f', 'gdigrab',               '-framerate', '30',            '-video_size', '1920x1080',   '-i', 'desktop',               '-c:v', 'libx264',            '-preset', 'ultrafast',       '-pix_fmt', 'yuv420p',       __path.join(output, name_out_file + '.mp4')  ];
-//var ffmpegArgs = [ '-f', 'gdigrab',               '-framerate', '30',            '-video_size', '1366x768',   '-i', 'desktop',               '-c:v', 'libx264',            '-preset', 'ultrafast',       '-pix_fmt', 'yuv420p',       __path.join(output, name_out_file + '.mp4')  ];
-var ffmpegArgs = [
+var ffmpegArgs = [ '-f', 'gdigrab',               '-framerate', '30',            '-video_size', '1920x1080',   '-i', 'desktop',               '-c:v', 'libx264',            '-preset', 'ultrafast',       '-pix_fmt', 'yuv420p',       __path.join(output, name_out_file + '.mp4')  ];
+////var ffmpegArgs = [ '-f', 'gdigrab',               '-framerate', '30',            '-video_size', '1366x768',   '-i', 'desktop',               '-c:v', 'libx264',            '-preset', 'ultrafast',         '-pix_fmt', 'yuv420p',       __path.join(output, name_out_file + '.mp4')  ];
+
+/*var ffmpegArgs = [
   '-f', 'gdigrab',               // Grabbing input from the desktop
   '-framerate', '30',            // Setting the frame rate
   '-video_size', '1920x1080',    // Setting the video size
@@ -197,6 +208,21 @@ var ffmpegArgs = [
   '-pix_fmt', 'yuv420p',         // Setting the pixel format
   '-f', 'segment' , '-segment_time', '60', '-reset_timestamps', '1', output +"/"+name_out_file+'%03d.mp4',
 ];
+*/
+/*
+var ffmpegArgs = [
+  '-f', 'gdigrab',               // Grabbing input from the desktop
+  '-framerate', '30',            // Setting the frame rate
+  '-video_size', '1920x1080',    // Setting the video size
+  '-i', 'desktop',               // Input is the desktop screen
+  '-c:v', 'libx264',             // Using the H.264 codec
+  '-preset', 'ultrafast',        // Setting the encoding preset
+  '-pix_fmt', 'yuv420p',         // Setting the pixel format
+   '1', output +"/"+name_out_file+'.mp4',
+];
+
+*/
+
 
 console.log( ffmpegArgs );
 //  output +"/"+ name_out_file + '.mp4'  // Output file path with .mov extension
@@ -239,6 +265,17 @@ ffmpegProcess = spawn(ffmpegPath, ffmpegArgs);
  } catch (error) {
     console.error('Error accessing microphone:', error);
 }
+
+
+
+
+
+
+
+timeoutID = setTimeout(playRecord, 1000*60*1); // 5000 milliseconds = 5 seconds
+
+
+
 
 })//end Start record
 
