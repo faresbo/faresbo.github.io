@@ -1,0 +1,55 @@
+
+
+<script>
+
+// Create a new WebSocket connection
+const socket = new WebSocket('ws://https://mobilite.lumiere.tn');
+
+// Event listener for when the connection opens
+socket.addEventListener('open', function (event) {
+    console.log('Connected to WebSocket server');
+    socket.send('Hello Server!');
+});
+
+// Event listener for when a message is received
+socket.addEventListener('message', function (event) {
+    console.log('Message from server:', event.data);
+});
+
+// Event listener for when the connection closes
+socket.addEventListener('close', function (event) {
+    console.log('Disconnected from WebSocket server');
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
