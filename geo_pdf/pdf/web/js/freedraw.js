@@ -17,11 +17,13 @@ var size = 12;
 $(document).on("pointerdown",".stage_draw_svg",function (e) {
 
 
+
+  
    size = parseInt( $(parent.document).find(".btn-size.active .box-size").html() );
   // console.log( Ss )
      var pageX = e.originalEvent.pageX;
-  var pageY = e.originalEvent.pageY;
-  var x = e.originalEvent.offsetX /  Ss;
+     var pageY = e.originalEvent.pageY;
+    var x = e.originalEvent.offsetX /  Ss;
   var y = e.originalEvent.offsetY /  Ss;
 /*
     const rectt = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
@@ -34,21 +36,24 @@ $(document).on("pointerdown",".stage_draw_svg",function (e) {
     last_svg_draw[0].appendChild(rectt);
 */
  
+
+
   if( !$(parent.document).find("body").hasClass("freedraw"))
     return
 
-  
     const newPath = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "path"
   );
-    newPath.setAttribute("class", "x");
+    newPath.setAttribute("class", "x tosort");
+    newPath.setAttribute("id","a"+ Math.floor(Date.now() )  ); //  
     newPath.setAttribute("fill",  $(parent.document).find(".btn-color.active div").css("background-color")  );
    // newPath.setAttribute("fill",  "red"  );
-    $(this)[0].appendChild(newPath);
-    path = $(this)[0].querySelector("path:last-child");
+   $(this)[0].appendChild(newPath);
+path = newPath;
+
     points = [[x*Ss, y*Ss, e.originalEvent.pressure]];
-    
+ 
     render();
 
 
@@ -65,7 +70,11 @@ $(document).on("pointermove",".stage_draw_svg",function (e) {
 
    if( !$(parent.document).find("body").hasClass("freedraw"))
     return
-    if (e.originalEvent.buttons === 1) {
+
+    //console.log( e.originalEvent.buttons );
+    //console.log( e.originalEvent.pageX,e.originalEvent.pageY );
+
+    //if (e.originalEvent.buttons === 1) {
       if (path) {
        // //console.log(  Ss );
        // //console.log( e.originalEvent.pageX );
@@ -78,7 +87,7 @@ $(document).on("pointermove",".stage_draw_svg",function (e) {
         //console.log( points );
         render();
       }
-    }
+    //}
 })//end stage_draw_svg
 
 
