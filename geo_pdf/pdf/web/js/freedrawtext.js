@@ -2,8 +2,7 @@
 //color = $(".draw-color.active").attr("color");
 //
 
-
-
+ 
 
 
 var points = [];
