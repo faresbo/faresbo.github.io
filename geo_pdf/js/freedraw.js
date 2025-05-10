@@ -1,106 +1,124 @@
 
-
-
-
-
-$(document).on("click", ".btn-draw", function () {
-  $(".btn-tool").removeClass("active");
-  $(this).addClass("active");
-  $("body").removeClass();
-  $("body").addClass("freedraw");
-});
-
- 
-
+//color = $(".draw-color.active").attr("color");
+//
 
 
 
 
 var points = [];
 
-var svg = document.querySelector("#svgElement");
-//console.log(svg);
-var path = svg.querySelector("path");
+ var path ="";
 var path = null;
-var color = "white";
-var size = 5;
+var color = "red";
+var size = 12;
 
 
 
-/*
-$(document).on("pointerdown", ".freedraw #svgElement", function (e) {
-
-});
-*/
-
-svg.addEventListener("pointerdown", handlePointerDown);
-svg.addEventListener("pointermove", handlePointerMove);
-svg.addEventListener("pointerup", handlePointerUp);
+$(document).on("pointerdown",".stage_draw_svg",function (e) {
 
 
-function handlePointerDown(e) { 
-  if( !$("body").hasClass("freedraw"))
-    return
-  const newPath = document.createElementNS(
-    "http://www.w3.org/2000/svg",
-    "path"
-  );
-  newPath.setAttribute("class", "x");
-  newPath.setAttribute("fill", color);
-  svg.appendChild(newPath);
-  path = document.querySelector("#svgElement > path:last-child");
-  points = [[e.pageX, e.pageY, e.pressure]];
+
   
-  render();
- } //end handlePointerMove
-
-
-
+   size = parseInt( $(parent.document).find(".btn-size.active .box-size").html() );
+  // console.log( Ss )
+     var pageX = e.originalEvent.pageX;
+     var pageY = e.originalEvent.pageY;
+    var x = e.originalEvent.offsetX /  Ss;
+  var y = e.originalEvent.offsetY /  Ss;
 /*
-$(document).on("pointermove", ".freedraw #svgElement", function (e) {
+    const rectt = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    rectt.setAttribute('class',  "x"); // X position
+    rectt.setAttribute('x',  x*Ss); // X position
+    rectt.setAttribute('y',  y*Ss); // Y position
+    rectt.setAttribute('width', 5); // Width of the rectangle
+    rectt.setAttribute('height', 5); // Height of the rectangle
+    rectt.setAttribute('fill', 'blue'); // Fill color
+    last_svg_draw[0].appendChild(rectt);
+*/
  
-});
-*/
-function handlePointerMove(e) { 
-  
-console.log( "Ter fer" );
 
-  if( !$("body").hasClass("freedraw"))
+
+  if( !$(parent.document).find("body").hasClass("freedraw"))
     return
 
-  if (e.buttons === 1) {
-    if (path) {
-      points = [...points, [e.pageX, e.pageY, e.pressure]];
-      render();
-    }
-  }
-} //end handlePointerMove
+    const newPath = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "path"
+  );
+    newPath.setAttribute("class", "x tosort");
+    newPath.setAttribute("id","a"+ Math.floor(Date.now() )  ); //  
+    newPath.setAttribute("fill",  $(parent.document).find(".btn-color.active div").css("background-color")  );
+   // newPath.setAttribute("fill",  "red"  );
+   $(this)[0].appendChild(newPath);
+path = newPath;
+
+    points = [[x*Ss, y*Ss, e.originalEvent.pressure]];
+ 
+    render();
 
 
 
 
-function handlePointerUp(e) { 
-  
-  if( !$("body").hasClass("freedraw"))
+
+})//end stage_draw_svg
+
+
+
+
+$(document).on("pointermove",".stage_draw_svg",function (e) {
+  size = parseInt( $(parent.document).find(".btn-size.active .box-size").html() );
+
+   if( !$(parent.document).find("body").hasClass("freedraw"))
     return
+
+    //console.log( e.originalEvent.buttons );
+    //console.log( e.originalEvent.pageX,e.originalEvent.pageY );
+
+    //if (e.originalEvent.buttons === 1) {
+      if (path) {
+       // //console.log(  Ss );
+       // //console.log( e.originalEvent.pageX );
+        var pageX = e.originalEvent.pageX;
+        var pageY = e.originalEvent.pageY;
+        var x = e.originalEvent.offsetX  / Ss;
+        var y = e.originalEvent.offsetY  / Ss;
+       // //console.log(x , Ss);
+        points = [...points, [x*Ss, y*Ss, e.originalEvent.pressure]];
+        //console.log( points );
+        render();
+      }
+    //}
+})//end stage_draw_svg
+
+
+
+
+
+
+$(document).on("pointerup",".stage_draw_svg",function (e) {
+
   
-  if (path) {
-    path = null;
-  }
-} //end handlePointerMove
+  if( !$(parent.document).find("body").hasClass("freedraw"))
+    return
+
+if (path) {
+  path = null;
+}
+})//end stage_draw_svg
 
 
 
 
 
-/*
-$(document).on("pointerup", ".freedraw #svgElement", function (e) {
 
-  
-});
-*/
+
+
+
+
 
 function render() {
+//console.log(  size )
+  
   path.setAttribute(
     "d",
     getSvgPathFromStroke(

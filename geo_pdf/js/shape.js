@@ -1,23 +1,28 @@
 
+//color = $(".draw-color.active").attr("color");
+//
 
 
 
 
 
+var points = [];
+var arr = [];
+var arrx = [];
+var arry = [];
+var arrt = [];
+var arrid = [];
 
+var isDrawing = false; // Flag to track drawing state
+var timeoutId; // Stores the timeout reference
+var firsttstamp = 0;
+ 
 
-
-$(document).on("click", ".btn-shape", function () {
-  $(".btn-tool").removeClass("active");
-  $(this).addClass("active");
-  $("body").removeClass();
-  $("body").addClass("shapedraw");
-});
 
 var _points = [];
 
 var _svg = document.querySelector("#svgElement");
-var _path = _svg.querySelector("path");
+var _path = "";
 var _path = null;
 var color = "white";
 var size = "5";
@@ -29,69 +34,82 @@ var arry = [];
 var arrt = [];
 var arrid = [];
 
-var isDrawing = false; // Flag to track drawing state
-var timeoutId; // Stores the timeout reference
-var firsttstamp = 0;
 
-$(document).on("mousedown", ".shapedraw #svgElement", function (e) {
 
- if( !$("body").hasClass("shapedraw")   ){
-  return;
- }
- isDrawing = true;
-  // Clear any previous timeouts to prevent unintended removals
-  clearTimeout(timeoutId);
+$(document).on("pointerdown",".stage_draw_svg",function (e) {
 
- const uniqueId =
- Date.now().toString(36) + Math.random().toString(36).substr(2);
- arrid.push(uniqueId);
+  size = parseInt( $(parent.document).find(".btn-size.active .box-size").html() );
+  color = $(parent.document).find(".btn-color.active div").css("background-color")  
+ 
+  var pageX = e.originalEvent.pageX;
+  var pageY = e.originalEvent.pageY;
+  var x = e.originalEvent.offsetX /  Ss;
+  var y = e.originalEvent.offsetY /  Ss;
+  if( !$(parent.document).find("body").hasClass("shapedraw"))
+    return
 
   const newPath = document.createElementNS(
     "http://www.w3.org/2000/svg",
     "path"
   );
-  newPath.setAttribute("id", ""+uniqueId);
-  newPath.setAttribute("class", "x");
-  newPath.setAttribute("fill", color);
-  _svg.appendChild(newPath);
-  _path = document.querySelector("#svgElement > path:last-child");
-  _points = [[e.pageX, e.pageY, e.pressure]];
-  
-  firsttstamp = Date.now();
+  isDrawing = true; 
+   clearTimeout(timeoutId);
+   const uniqueId =
+   Date.now().toString(36) + Math.random().toString(36).substr(2);
+   arrid.push(uniqueId);
+   newPath.setAttribute("id", ""+uniqueId);
+
+  newPath.setAttribute("class", "x r");
+  newPath.setAttribute("fill", $(parent.document).find(".btn-color.active div").css("background-color") );
+  newPath.setAttribute("arrx", "");
+  $(this)[0].appendChild(newPath);
+  path = $(this)[0].querySelector("path:last-child");
+
+  points = [[x*Ss, y*Ss, e.originalEvent.pressure]];
+
+  arrx = [parseInt( pageX )];  firsttstamp = Date.now();
   arrt.push(0);
-  arrx.push(e.pageX);
-  arry.push(e.pageY);
-  arr.push({
-    X:  e.pageX,
-    Y:  e.pageY,
-    ID: 0,
-  });
+
+  arry = [parseInt(pageY)];
+  render();
 
 
-  _render();
-});
 
-$(document).on("mousemove", ".shapedraw #svgElement", function (e) {
-  if (e.buttons === 1) {
-    if (_path &&  $("body").hasClass("shapedraw") ) {
-      arrx.push(e.pageX);
-      arry.push(e.pageY);
+})//end stage_draw_svg
+
+
+
+$(document).on("pointermove",".stage_draw_svg",function (e) {
+  
+  if( !$(parent.document).find("body").hasClass("shapedraw"))
+    return
+
+  if (e.originalEvent.buttons === 1) {
+    if (path) {
       var currentTimestamp = Date.now();
       var timeDiff = currentTimestamp - firsttstamp;
       arrt.push(timeDiff);
-      arr.push({
-        X:  e.pageX,
-        Y:  e.pageY,
-        ID: 0,
-      });
-      _points = [..._points, [e.pageX, e.pageY, e.pressure]];
-      _render();
+      var pageX = e.originalEvent.pageX;
+      var pageY = e.originalEvent.pageY;
+      var x = e.originalEvent.offsetX /  Ss;
+      var y = e.originalEvent.offsetY /  Ss;
+
+      arrx.push(parseInt(pageX));
+      arry.push(parseInt(pageY));
+
+
+      points = [...points, [x*Ss, y*Ss, e.originalEvent.pressure]];
+      render();
     }
   }
-});
 
-$(document).on("mouseup", ".shapedraw #svgElement", function (e) {
-  if (_path &&  $("body").hasClass("shapedraw") ) {
+
+})//end stage_draw_svg
+
+
+$(document).on("pointerup",".stage_draw_svg",function (e) {
+  var _svg_ = $(this)[0];
+  if (  $(parent.document).find("body").hasClass("shapedraw") ) {
     /*
     if (Math.abs(outlines.PathLength(toRecognize)) > 1e-5) {
       alert("")
@@ -103,8 +121,7 @@ $(document).on("mouseup", ".shapedraw #svgElement", function (e) {
     // Start a timeout that will remove paths after 1 second of inactivity
     timeoutId = setTimeout(() => {
       if (!isDrawing) {
-        console.log(arr, arrx,arry,arrt, arrid);
-        recoGoogle(arr, arrx,arry,arrt, arrid);
+         recoGoogle(arr, arrx,arry,arrt, arrid  , _svg_ );
         arr = [];
         arrid = [];
         arrx = [];
@@ -151,7 +168,7 @@ function getSvgPathFromStroke(stroke) {
 
 
 
-async function recoGoogle(arr, arrx, arry, arrt, arrid) {
+async function recoGoogle(arr, arrx, arry, arrt, arrid , _svg_) {
   var p1 = arr[0];
   var p2 = arr[arr.length - 1];  
   var _p1 = arr[0];
@@ -264,7 +281,7 @@ async function recoGoogle(arr, arrx, arry, arrt, arrid) {
     }
 
     var pathIds = arrid;
-    var boundingBoxes = [];
+     var boundingBoxes = [];
 
     for (var i = 0; i < pathIds.length; i++) {
       var path = document.getElementById(pathIds[i]);
@@ -275,7 +292,7 @@ async function recoGoogle(arr, arrx, arry, arrt, arrid) {
     }
  
 
-    drawPredictShape(shape_name, boundingBoxes, _p1, _p2 , arr);
+    drawPredictShape(shape_name, boundingBoxes, _p1, _p2 , arr , _svg_);
   });
 } //end recoGoogle
 
@@ -1309,7 +1326,7 @@ var diff_square = {
 
 
 
-function recoShape(aarr) {
+function recoShape(aarr ,   _svg_) {
   var st = Date.now();
   var match = recognizer.Recognize(aarr);
   var took = Date.now() - st;
@@ -1318,7 +1335,7 @@ function recoShape(aarr) {
   console.log(match.Score);
 
 
-  var svg = document.getElementById("svgElement");
+  var svg =   _svg_
   var pathIds = arrid;
   var boundingBoxes = [];
   var p1 = "";
@@ -1380,43 +1397,44 @@ function recoShape(aarr) {
 
 
 
- function drawPredictShape( name , boundingBoxes, p1,p2 , arr ) {
-
+ function drawPredictShape( name , boundingBoxes, p1,p2 , arr , _svg_) {
+console.log( _svg_ );
+console.log( boundingBoxes );
   switch (name) {
     case "Rectangle":
-      appendRecct(boundingBoxes);
+      appendRecct(boundingBoxes, _svg_);
       break;
     case "Circle":
       //appendCircle(boundingBoxes);
-      appendEllipse(boundingBoxes);
+      appendEllipse(boundingBoxes, _svg_);
 
       // code block
       break;
 
     case "Triangle_rectangle_right":
-      appendTriangleRectangle_right(boundingBoxes);
+      appendTriangleRectangle_right(boundingBoxes, _svg_);
       // code block
       break;
 
     case "Triangle_rectangle_left":
-      appendTriangleRectangle_left(boundingBoxes);
+      appendTriangleRectangle_left(boundingBoxes, _svg_);
       // code block
       break;
 
     case "Triangle":
-      appendTriangle(boundingBoxes);
+      appendTriangle(boundingBoxes, _svg_);
       // code block
       break;
     case "Ellipse":
-      appendEllipse(boundingBoxes);
+      appendEllipse(boundingBoxes, _svg_);
       // code block
       break;
     case "Line":
-       appendLine(p1,p2);
+       appendLine(p1,p2, _svg_);
       // code block
       break;
       case "Arrow":
-        appendArrow(p1,p2,arr);
+        appendArrow(p1,p2,arr, _svg_);
         // code block
         break;
 
@@ -1430,8 +1448,8 @@ function recoShape(aarr) {
 
 
   
-function appendTriangleRectangle_left(boundingBoxes) {
-  var svg = document.getElementById("svgElement");
+function appendTriangleRectangle_left(boundingBoxes, _svg_) {
+  var svg =  _svg_;
   var rectData = boundingBoxes[0];
 
   var x1 = rectData.x + rectData.width; // Bottom-right corner of the rectangle
@@ -1465,8 +1483,8 @@ function appendTriangleRectangle_left(boundingBoxes) {
 
 
 
-function appendRecct(boundingBoxes) {
-  var svg = document.getElementById("svgElement");
+function appendRecct(boundingBoxes, _svg_) {
+  var svg =   _svg_
   var rectData = boundingBoxes[0];
   var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   rect.setAttribute("x", rectData.x);
@@ -1480,9 +1498,8 @@ function appendRecct(boundingBoxes) {
   svg.appendChild(rect);
 } //end
 
-function appendCircle(boundingBoxes) {
-  var svg = document.getElementById("svgElement");
-
+function appendCircle(boundingBoxes, _svg_) {
+  var svg =    _svg_
   var rectData = boundingBoxes[0];
   var cx = rectData.x + rectData.width / 2;
   var cy = rectData.y + rectData.height / 2;
@@ -1498,8 +1515,8 @@ function appendCircle(boundingBoxes) {
   svg.appendChild(circle);
 } //end
 
-function appendTriangle(boundingBoxes) {
-  var svg = document.getElementById("svgElement");
+function appendTriangle(boundingBoxes, _svg_) {
+  var svg =   _svg_
   var rectData = boundingBoxes[0];
   var x1 = rectData.x + rectData.width / 2; // Top center of the rectangle
   var y1 = rectData.y;
@@ -1524,8 +1541,9 @@ function appendTriangle(boundingBoxes) {
   svg.appendChild(triangle);
 } //end
 
-function appendEllipse(boundingBoxes) {
-  var svg = document.getElementById("svgElement");
+function appendEllipse(boundingBoxes, _svg_) {
+  var svg =   _svg_;
+  console.log( boundingBoxes);
   var rectData = boundingBoxes[0];
   var cx = rectData.x + rectData.width / 2;
   var cy = rectData.y + rectData.height / 2;
@@ -1550,9 +1568,8 @@ function appendEllipse(boundingBoxes) {
 
 
 
-function appendTriangleRectangle_right(boundingBoxes) {
-  var svg = document.getElementById("svgElement");
-
+function appendTriangleRectangle_right(boundingBoxes, _svg_) {
+  var svg =  _svg_
   // Rectangle data
   var rectData = boundingBoxes[0];
 
@@ -1586,9 +1603,9 @@ function appendTriangleRectangle_right(boundingBoxes) {
 
 
 
-function appendLine(p1,p2) {
+function appendLine(p1,p2, _svg_) {
 
-  var svg = document.getElementById("svgElement");
+  var svg =   _svg_;
   // Create a line element
   var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
   line.setAttribute("x1", p1.X);
@@ -1605,7 +1622,7 @@ function appendLine(p1,p2) {
 } //end
 
 
-function appendArrow(  p1, p2 , pathPoints ) {
+function appendArrow(  p1, p2 , pathPoints , _svg_) {
 
  
 // Iterate through the array of points to detect direction changes
@@ -1648,8 +1665,8 @@ var translateY =   size * 5 * Math.sin(angle);
 
 
 // Append line and arrowhead to the SVG container
-svg.appendChild(line);
-svg.appendChild(arrowhead);
+ _svg_.appendChild(line);
+_svg_.appendChild(arrowhead);
   
 }
 function getPathDirection(pathPoints) {

@@ -1,136 +1,98 @@
 
-
-
-
-
-
+//color = $(".draw-color.active").attr("color");
+//
 
  
 
 
-//  $("#bkg-free-draw").css("fill",'red');
-
-
-
-$(document).on("click", ".btn-draw-text", function () {
-
-  $(".btn-tool").removeClass("active");
-  $(this).addClass("active");
-  $("body").removeClass();
-  $("body").addClass("freedrawtext");
-  //console.log( $("body").css("background-color") );
-
-});
-
-
-
-function handlePointerDown(e) {
-  
-} //end 
-
-
-
-function handlePointerUp(e) {
-  
-} //end handlePointerUp
-
-
-
 var points = [];
-
 var arr = [];
 var arrx = [];
 var arry = [];
 var arrt = [];
 var arrid = [];
 
-
-
-
-var svg = document.querySelector("#svgElement");
-var path = svg.querySelector("path");
-var path = null;
-var color = "white";
-var size = "5";
-/*
-$(document).on("pointerdown", ".freedraw #svgElement", function (e) {
-
-});
-*/
-
-svg.addEventListener("pointerdown", handlePointerDown);
-svg.addEventListener("pointermove", handlePointerMove);
-svg.addEventListener("pointerup", handlePointerUp);
-
-
 var isDrawing = false; // Flag to track drawing state
 var timeoutId; // Stores the timeout reference
 var firsttstamp = 0;
-
-function handlePointerDown(e) { 
  
-  if( !$("body").hasClass("freedrawtext"))
+
+
+$(document).on("pointerdown",".stage_draw_svg",function (e) {
+
+  size = parseInt( $(parent.document).find(".btn-size.active .box-size").html() );
+ 
+  var pageX = e.originalEvent.pageX;
+  var pageY = e.originalEvent.pageY;
+  var x = e.originalEvent.offsetX /  Ss;
+  var y = e.originalEvent.offsetY /  Ss;
+  if( !$(parent.document).find("body").hasClass("freedrawtext"))
     return
+
   const newPath = document.createElementNS(
     "http://www.w3.org/2000/svg",
     "path"
   );
-  isDrawing = true;
-  clearTimeout(timeoutId);
+  isDrawing = true; 
+   clearTimeout(timeoutId);
+
 
   newPath.setAttribute("class", "x r");
-  newPath.setAttribute("fill", color);
+  newPath.setAttribute("fill", $(parent.document).find(".btn-color.active div").css("background-color") );
   newPath.setAttribute("arrx", "");
-  svg.appendChild(newPath);
-  path = document.querySelector("#svgElement > path:last-child");
-  points = [[e.pageX, e.pageY, e.pressure]];
+  $(this)[0].appendChild(newPath);
+  path = $(this)[0].querySelector("path:last-child");
 
-  arrx = [parseInt(e.pageX)];  firsttstamp = Date.now();
+  points = [[x, y, e.originalEvent.pressure]];
+
+  arrx = [parseInt( pageX )];  firsttstamp = Date.now();
   arrt.push(0);
 
-  arry = [parseInt(e.pageY)];
+  arry = [parseInt(pageY)];
   render();
- } //end handlePointerMove
 
 
 
-/*
-$(document).on("pointermove", ".freedraw #svgElement", function (e) {
- 
-});
-*/
-function handlePointerMove(e) { 
+})//end stage_draw_svg
+
+
+
+$(document).on("pointermove",".stage_draw_svg",function (e) {
   
-  if( !$("body").hasClass("freedrawtext"))
+  if( !$(parent.document).find("body").hasClass("freedrawtext"))
     return
 
-  if (e.buttons === 1) {
+  if (e.originalEvent.buttons === 1) {
     if (path) {
       var currentTimestamp = Date.now();
       var timeDiff = currentTimestamp - firsttstamp;
       arrt.push(timeDiff);
-      arrx.push(parseInt(e.pageX));
-      arry.push(parseInt(e.pageY));
+      var pageX = e.originalEvent.pageX;
+      var pageY = e.originalEvent.pageY;
+      var x = e.originalEvent.offsetX /  Ss;
+      var y = e.originalEvent.offsetY /  Ss;
+
+      arrx.push(parseInt(pageX));
+      arry.push(parseInt(pageY));
 
 
-      points = [...points, [e.pageX, e.pageY, e.pressure]];
+      points = [...points, [x, y, e.originalEvent.pressure]];
       render();
     }
   }
-} //end handlePointerMove
 
 
+})//end stage_draw_svg
 
 
-
-function handlePointerUp(e) { 
-  
-  if( !$("body").hasClass("freedrawtext"))
+$(document).on("pointerup",".stage_draw_svg",function (e) {
+  if( !$(parent.document).find("body").hasClass("freedrawtext"))
     return
   
   if (path) {
  
-    path = document.querySelector("#svgElement > path:last-child");
+var Mysvg =     $(this)[0];
+    path = $(this)[0].querySelector("path:last-child");
     path.setAttribute("arrx",JSON.stringify(arrx));
     path.setAttribute("arry",JSON.stringify(arry));
     path.setAttribute("arrt",JSON.stringify(arrt));
@@ -141,7 +103,7 @@ function handlePointerUp(e) {
 
     timeoutId = setTimeout(() => {
       if (!isDrawing) {
-        var rPaths = document.querySelectorAll('#svgElement > path.r');
+        var rPaths = $(this)[0].querySelectorAll('path.r');
         // Create a group element
         var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
         // Move each path with class 'r' into the group and remove the class 'r'
@@ -152,23 +114,27 @@ function handlePointerUp(e) {
            language : "en", //string, language of input trace, default: "zh_TW"
            numOfReturn : 5,    //int, number of maximum returned results, default: undefined
           };
-      
+      console.log( rPaths )
    var T = [];
         rPaths.forEach(function(path) {
 
-          group.setAttribute("class", "x");
-  group.appendChild(path.cloneNode(true)); // Clone the path node
+           if ( !path.getAttribute("arry") ){
+            $("path").removeClass("r");
 
-
+            return;
+          }
+          group.appendChild(path.cloneNode(true)); // Clone the path node
           path.parentNode.removeChild(path); // Remove the original path
           T.push([
-            JSON.parse(path.getAttribute("arrx")),
-            JSON.parse(path.getAttribute("arry")),
-            JSON.parse(path.getAttribute("arrt"))
+              JSON.parse(path.getAttribute("arrx")),
+              JSON.parse(path.getAttribute("arry")),
+              JSON.parse(path.getAttribute("arrt"))
           ])
+
+
         });
 
-        svg.appendChild(group);
+        Mysvg.appendChild(group);
 
         handwriting.recognize( T , options , function  (e) {
           console.log(e);
@@ -184,7 +150,6 @@ function handlePointerUp(e) {
               newText.setAttribute("y", bbox.y + bbox.height); // Adjust y position based on your requirement
               var defaultFontSize = 16;
               newText.setAttribute("font-size", defaultFontSize + "px");
-              newText.setAttribute("style",'font-family: "Kaushan Script", cursive;')
               function adjustFontSize() {
                   var textWidth = newText.getComputedTextLength(); // Measure the text width
                   var availableWidth = bbox.width; // Width of the bounding box
@@ -202,17 +167,20 @@ function handlePointerUp(e) {
                   borderRect.setAttribute("fill", "none"); // No fill
                   borderRect.setAttribute("stroke", "blue"); // Border color
                   borderRect.setAttribute("stroke-width", "2"); // Border width
-                  borderRect.setAttribute("class", "x");
-
-                  document.querySelector("#svgElement").appendChild(borderRect);
+                  //Mysvg.appendChild(borderRect);
               }
-              newText.setAttribute("fill", color);
-              newText.setAttribute("class", "x");
-
+              newText.setAttribute("fill",  $(parent.document).find(".btn-color.active div").css("background-color"));
+              newText.setAttribute("class", "x" );
               newText.textContent = e[0];
               setTimeout(adjustFontSize, 100); // Adjust this timeout as needed
-              //lastG.parentNode.removeChild(lastG);
-              document.querySelector("#svgElement").appendChild(newText);
+              lastG.parentNode.removeChild(lastG);
+              Mysvg.appendChild(newText);
+          }else{
+            var rPaths = $(this)[0].querySelectorAll('path.r');
+            rPaths.forEach(function(path) {
+              $(path).removeClass("r")
+            })
+
           }
 
 
@@ -222,7 +190,7 @@ function handlePointerUp(e) {
 
         console.log(T);
 
-        var pathto =  document.querySelector("#svgElement > g:last-child");
+        var pathto =  Mysvg.querySelector("g:last-child");
         var bbox = pathto.getBBox();
         var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
         rect.setAttribute("x", bbox.x);
@@ -231,8 +199,7 @@ function handlePointerUp(e) {
         rect.setAttribute("height", bbox.height);
         rect.setAttribute("fill", "none");
         rect.setAttribute("stroke", "red");
-        rect.setAttribute("class","x");
-         svg.appendChild(rect);
+         //Mysvg.appendChild(rect);
 
 
 
@@ -240,50 +207,9 @@ function handlePointerUp(e) {
 
 
       }
-    }, 2000);
+    }, 1500);
 
 
   }
-} //end handlePointerMove
+})//end stage_draw_svg
 
-
-
-
-
-/*
-$(document).on("pointerup", ".freedraw #svgElement", function (e) {
-
-  
-});
-*/
-
-function render() {
-  path.setAttribute(
-    "d",
-    getSvgPathFromStroke(
-      ae(points, {
-        size: size,
-        thinning: 0.5,
-        smoothing: 0.5,
-        streamline: 0.5,
-      })
-    )
-  );
-}
-
-// @ref https://github.com/steveruizok/perfect-freehand#rendering
-function getSvgPathFromStroke(stroke) {
-  if (!stroke.length) return "";
-
-  const d = stroke.reduce(
-    (acc, [x0, y0], i, arr) => {
-      const [x1, y1] = arr[(i + 1) % arr.length];
-      acc.push(x0, y0, (x0 + x1) / 2, (y0 + y1) / 2);
-      return acc;
-    },
-    ["M", ...stroke[0], "Q"]
-  );
-
-  d.push("Z");
-  return d.join(" ");
-}

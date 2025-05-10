@@ -1,28 +1,45 @@
 
 
 
-$(document).on("click", ".btn-eraser", function () {
-  $(".btn-tool").removeClass("active");
-  $(this).addClass("active");
-  $("body").removeClass();
-  $("body").addClass("eraser");
-});
+
+
+
+
+
 
 var caneraser = false;
-$(document).on("mousedown",".eraser",function (params) {
-  caneraser = true;
-  console.log("start remove")
-})//end
 
-$(document).on("mousemove",".eraser .x",function (params) {
+$(document).on("mousedown","body",function (params) {
+  if( $(parent.document).find("body").hasClass("eraser") )
+      caneraser = true;
+
+ })//end
+
+$(document).on("mousemove","body .x",function (params) {
+
    if( caneraser ){
     $(this).remove();
   }//end 
+
 })//end
 
 
-$(document).on("mouseup",".eraser",function (params) {
+$(document).on("mouseup","body",function (params) {
 
   caneraser = false;
 
 })//end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
