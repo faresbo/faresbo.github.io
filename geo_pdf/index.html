@@ -2,14 +2,11 @@
 
 <html>
     <head>
-
-
         <meta charset="utf-8">
         <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-       
         <!-- style assets -->  
         <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
         <link rel="stylesheet" type="text/css" href="css/rester.css"> 
@@ -17,9 +14,6 @@
         <link rel="stylesheet" type="text/css" href="css/Annotation.css">
         <link rel="stylesheet" type="text/css" href="css/rule-compass.css">
         <link rel="stylesheet" type="text/css" href="css/swiper.css"> 
-
-
-
         <!-- script libjs assets -->          
         <script type="text/javascript" src="libjs/jquery.js"></script>
         <script type="text/javascript" src="libjs/dragscroll.js"></script>
@@ -33,10 +27,13 @@
         <script type="text/javascript" src="libjs/raphael.min.js"></script>
         <script type="text/javascript" src="libjs/perfect_draw.js"></script>
         <script src="libjs/handwriting.js"></script>
-
-
         <script src="libjs/jquery.splitter.js"></script>
         <link href="libjs/jquery.splitter.css" rel="stylesheet"/>
+
+
+
+   
+        
 
         <title>Demo Annotation-Rule-Compass</title>
 
@@ -112,7 +109,7 @@
               </svg>
             </div>
             
-            <div class="btn-tool btn-draw-text ">
+            <div class="btn-tool btn-draw-text " style="display: none;">
               <svg style="    fill: #9C27B0;position: absolute;top: -5px;left: 33px;zoom: 0.6;" width="24" height="24"
                   viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm shrink-0">
                   <path
@@ -120,6 +117,10 @@
                       fill=""></path>
                   <path   d="M17.1913 3.69537L17.6794 2.23105C17.7821 1.92298 18.2179 1.92298 18.3206 2.23105L18.8087 3.69537C19.0441 4.40167 19.5983 4.9559 20.3046 5.19133L21.769 5.67944C22.077 5.78213 22.077 6.21787 21.769 6.32056L20.3046 6.80867C19.5983 7.0441 19.0441 7.59833 18.8087 8.30463L18.3206 9.76895C18.2179 10.077 17.7821 10.077 17.6794 9.76895L17.1913 8.30463C16.9559 7.59833 16.4017 7.0441 15.6954 6.80867L14.231 6.32056C13.923 6.21787 13.923 5.78213 14.231 5.67944L15.6954 5.19133C16.4017 4.9559 16.9559 4.40167 17.1913 3.69537Z"  fill=""></path>
               </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M280-160v-520H80v-120h520v120H400v520H280Zm360 0v-320H520v-120h360v120H760v320H640Z"/></svg>
+           
+            </div> <div class="btn-tool btn-text ">
+            
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M280-160v-520H80v-120h520v120H400v520H280Zm360 0v-320H520v-120h360v120H760v320H640Z"/></svg>
             </div>
             
@@ -268,14 +269,18 @@
               
               
               <script>
-              var splitter = $('#foo').height(200).split({
-              orientation: 'vertical',
-              limit: 10,
-              position: '50%', // if there is no percentage it interpret it as pixels
-              onDrag: function(event) {
-              console.log(splitter.position());
-              }
-              });    
+         $(document).ready(function () {
+  var splitter = $('#foo')
+    .height(200)
+    .split({
+      orientation: 'vertical',
+      limit: 10,
+      position: '50%', // this sets the splitter to the middle
+      onDrag: function (event) {
+        console.log(splitter.position());
+      }
+    });
+});
               </script>
               
               
@@ -439,6 +444,7 @@
 
 <script src="js/header.js"></script>
 <script src="js/freedraw.js"></script>
+<script src="js/text.js"></script>
 <script src="js/freedrawtext.js"></script>
 <script src="js/shape.js"></script>
 <script src="js/eraser.js"></script>
