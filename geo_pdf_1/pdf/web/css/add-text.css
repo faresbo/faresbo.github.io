@@ -1,0 +1,432 @@
+.ql-container {
+  box-sizing: border-box;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  height: 100%;
+  margin: 0px;
+  position: relative;
+}
+
+.ql-container.ql-disabled .ql-tooltip {
+  visibility: hidden;
+}
+
+.ql-container:not(.ql-disabled) li[data-list=checked],
+.ql-container:not(.ql-disabled) li[data-list=unchecked] > .ql-ui {
+  cursor: pointer;
+}
+
+.ql-clipboard {
+  left: -100000px;
+  height: 1px;
+  overflow-y: hidden;
+  position: absolute;
+  top: 50%;
+}
+
+.ql-clipboard p {
+  margin: 0;
+  padding: 0;
+}
+
+.ql-code-block-container {
+  font-family: monospace;
+}
+
+.ql-video {
+  display: block;
+  max-width: 100%;
+}
+
+.ql-video.ql-align-center {
+  margin: 0 auto;
+}
+
+.ql-video.ql-align-right {
+  margin: 0 0 0 auto;
+}
+
+.ql-bg-black {
+  background-color: rgb(0, 0, 0);
+}
+
+.ql-bg-red {
+  background-color: rgb(230, 0, 0);
+}
+
+.ql-bg-orange {
+  background-color: rgb(255, 153, 0);
+}
+
+.ql-bg-yellow {
+  background-color: rgb(255, 255, 0);
+}
+
+.ql-bg-green {
+  background-color: rgb(0, 138, 0);
+}
+
+.ql-bg-blue {
+  background-color: rgb(0, 102, 204);
+}
+
+.ql-bg-purple {
+  background-color: rgb(153, 51, 255);
+}
+
+.ql-color-white {
+  color: rgb(255, 255, 255);
+}
+
+.ql-color-red {
+  color: rgb(230, 0, 0);
+}
+
+.ql-color-orange {
+  color: rgb(255, 153, 0);
+}
+
+.ql-color-yellow {
+  color: rgb(255, 255, 0);
+}
+
+.ql-color-green {
+  color: rgb(0, 138, 0);
+}
+
+.ql-color-blue {
+  color: rgb(0, 102, 204);
+}
+
+.ql-color-purple {
+  color: rgb(153, 51, 255);
+}
+
+.ql-font-serif {
+  font-family: Georgia, Times New Roman, serif;
+}
+
+.ql-font-monospace {
+  font-family: Monaco, Courier New, monospace;
+}
+
+.ql-size-small {
+  font-size: 0.75em;
+}
+
+.ql-size-large {
+  font-size: 1.5em;
+}
+
+.ql-size-huge {
+  font-size: 2.5em;
+}
+
+.ql-direction-rtl {
+  direction: rtl;
+  text-align: inherit;
+}
+
+.ql-align-center {
+  text-align: center;
+}
+
+.ql-align-justify {
+  text-align: justify;
+}
+
+.ql-align-right {
+  text-align: right;
+}
+
+.ql-ui {
+  position: absolute;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Container that holds the editor */
+.add-text-container {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  width: 300px; /* Initial width */
+  height: 150px; /* Initial height */
+  border: 1px solid #ccc;
+  border: 1px solid transparent;
+  border-radius: 4px;
+   overflow: visible; /* Allow children to be visible outside */
+  resize: both; /* Allow resizing of the container */
+  box-sizing: border-box; /* Include padding and border in width/height */
+}
+
+/* Move and delete button styles */
+.add-text-container .move,.add-text-container .delete {
+  display: inline-block;
+  cursor: pointer;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.add-text-container .move,.add-text-container .edit {
+  display: inline-block;
+  cursor: pointer;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.add-text-container .move {
+  cursor: pointer; /* Make it clear it's draggable */
+}
+
+.add-text-container .delete {
+  cursor: pointer;
+}
+
+.add-text-container .edit {
+  cursor: pointer;
+}
+
+/* Editable area */
+.my-editor-quill {
+  resize: none; /* Enable resizing of the editor */
+  overflow: hidden; /* Allow scrolling within the editor */
+  width: 100%; /* Match the parent width */
+  height: 100%; /* Match the parent height */
+  border: none; /* Remove default border */
+  padding: 0; /* Remove padding to match parent dimensions */
+  box-sizing: border-box; /* Include padding/border in width/height */
+  background-color: transparent; /* Make background transparent */
+
+  border: 1px solid black;
+  border: 1px solid transparent;
+  border-radius: 8px;
+     font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+     color: black;
+     font-size: 12px;
+}
+.add-text-container.active .my-editor-quill{
+     resize: both;
+    overflow: auto;
+}
+.ql-container.ql-snow {
+  border: 1px solid transparent !important;
+}
+
+.add-text-container.active .ql-container.ql-snow{
+  border: 1px solid #3166fc !important;
+
+}
+
+/* Move button position inside the container */
+.add-text-container .delete {
+
+  position: absolute;
+    top: 30px;
+    left: -30px;
+    z-index: 9999999;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    background: rgb(49, 102, 252);
+    border-radius: 50%;
+    display: none;
+}
+
+/* Move button position inside the container */
+.add-text-container .edit {
+
+  position: absolute;
+    top: 30px;
+    left: -30px;
+    z-index: 9999999;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    background: rgb(49, 102, 252);
+    border-radius: 50%;
+    display: none;
+}
+
+
+
+
+
+.add-text-container .move {
+
+  position: absolute;
+    top: 0px;
+    left: -30px;
+    z-index: 9999999;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    background: rgb(49, 102, 252);
+    border-radius: 50%;
+    display: none;
+
+}
+.add-text-container.active .move {
+  display: block;
+}
+
+
+
+.ql-toolbar.ql-snow {
+  background: white;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .25);
+  padding: 8px;
+  /* background-color: var(--color-background); */
+  border-radius: 9px;
+  width: 626px;
+
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  padding: 8px;
+  position: absolute;
+  top: -50px;
+  zoom: .5;
+  zoom: .8;
+} 
+
+.ql-snow .ql-picker-label {
+  cursor: pointer;
+  display: inline-block;
+  height: 100%;
+  padding-left: 8px;
+  padding-right: 2px;
+  position: relative;
+  width: 70%;
+  font-size: 10px;
+}
+
+.ql-editor {
+  
+  padding: 0px !important; 
+}
+p {
+  display: block;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+}
+.ql-editor {
+  box-sizing: border-box;
+  counter-reset: list-0 list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+  line-height: 1.42;
+  height: 100%;
+  outline: none;
+  overflow-y: hidden !important;}
+
+.layer-text{
+pointer-events: none;
+user-select: none;
+-webkit-user-select: none; /* Chrome, Safari */
+-moz-user-select: none;    /* Firefox */
+-ms-user-select: none;     /* IE/Edge */
+user-select: none;  
+}
+
+
+
+.text-tool  .layer-text{
+pointer-events: all;
+user-select: text;
+}
+
+.layer-text .ql-editor{
+  pointer-events: noneX; /* Prevent focus and interaction */
+
+}
+.text-tool .ql-editor  {
+  pointer-events: auto; /* Prevent focus and interaction */
+}
+
+
+.qr-tool  .layer-text  {
+  pointer-events: auto; /* Prevent focus and interaction */
+}
+.cursor-tool  .layer-text  {
+  pointer-events: auto; /* Prevent focus and interaction */
+}
+
+*, ::after, ::before {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: transparent !important;
+}
+.ql-picker-options{
+    z-index: 9999999;
+}
+
+.ql-toolbar.ql-snow { 
+    z-index: 9999999999999;
+}
+
+
+ /* Custom font size classes */
+.ql-size-size-16 {
+  font-size: 16px;
+}
+.ql-size-size-20 {
+  font-size: 20px;
+}
+.ql-size-size-28 {
+  font-size: 28px;
+}
+ .ql-font-serif{
+  font-family: comic;
+  font-family: "Caveat", cursive !important;
+ }
+
+.ql-size-large{
+  font-size: 28px!important;
+}
+.ql-size-small{
+  font-size: 18px !important;
+  font-family: "Caveat", cursive !important;
+
+}
