@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <!-- style assets -->  
+        <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
+        <link rel="stylesheet" type="text/css" href="css/rester.css"> 
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="css/Annotation.css">
+        <link rel="stylesheet" type="text/css" href="css/rule-compass.css">
+        <link rel="stylesheet" type="text/css" href="css/swiper.css"> 
+        <!-- script libjs assets -->          
+        <script type="text/javascript" src="libjs/jquery.js"></script>
+        <script type="text/javascript" src="libjs/dragscroll.js"></script>
+        <script type="text/javascript" src="libjs/interact.js"></script>
+        <script type="text/javascript" src="libjs/jquery.panzoom.js"></script>
+        <script type="text/javascript" src="libjs/jquery-ui.js"></script>
+        <script type="text/javascript" src="libjs/jquery.ui.rotatable.js"></script>
+        <script type="text/javascript" src="libjs/jquery.ui.touch-punch.js"></script>
+        <script type="text/javascript" src="libjs/jquery.event.move.js"></script>
+        <script type="text/javascript" src="libjs/swiper.min.js"></script>
+        <script type="text/javascript" src="libjs/raphael.min.js"></script>
+        <script type="text/javascript" src="libjs/perfect_draw.js"></script>
+        <script src="libjs/handwriting.js"></script>
+        <script src="libjs/jquery.splitter.js"></script>
+        <link href="libjs/jquery.splitter.css" rel="stylesheet"/>
+
+
+
+   
+        
+
+        <title>Demo Annotation-Rule-Compass</title>
+
+        <style>
+        .scalefix{
+        transform-origin: 0% 0% 0px;
+        }
+        </style>        
+        <style id="style-pageA4"></style>
+        <style id="scalefix" ></style>
+        <style id="zoomfix" ></style>
+        <style id="slidefix"></style>
+        <style id="slideBoxfix"></style>
+        <style id="slideOrgfix"></style>
+        <style id="fixbkgRule"></style>
+        <style id="fix-slider-origin"></style>
+        <style id="fix-texture-rule"></style>
+    </head>
+    <body style="visibility:hidden;" id="wrap-content">
+
+ 
+
+
+
+
+
+
+
+        <header style="zoom:1;position: absolute;top: 0px;width: 100%;height: 50px;background: ;z-index: 99;text-align: center;background: black;filter: invert(1);    zoom: 1;
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        height: 50px;
+        background: ;
+        z-index: 99;
+        text-align: center;
+        background: black;
+        filter: invert(1);
+        transform: translateY(13px);
+        background: transparent;background:black;border-bottom: 1px solid #3b3b3b;">
+
+
+<div id="btn-add-record" class="start btn-tool btn-record rec" style="display:none;position:absolute;right:10px;z-index: 99999999999;">
+  <svg class="dot-record rec" style="fill: rgb(208, 42, 43);fill: #26bdff; zoom: 1.2;transform: translate(0px, 2px);display:inline-block;" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M480-200q-117 0-198.5-81.5T200-480q0-117 81.5-198.5T480-760q117 0 198.5 81.5T760-480q0 117-81.5 198.5T480-200Z"></path></svg>  
+  
+  <div class="label-add-record rec" style="  display:none;  position: absolute;    top: -1px;    right: 31px;    width: 60px;    height: 20px;    background: red;    color: white;    border-radius: 5px;    line-height: 20px;">
+  <span class="record-minutes">00</span>:<span class="record-seconds">00</span></div>
+  </div>
+
+  <svg id="btn-add-record-pause" class="rec btn-pause-play" style="display:none;position: absolute;top: 12px;right: 69px;z-index: 99999999999;-webkit-app-region: no-drag;cursor: pointer;fill: white;" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M560-200v-560h160v560H560Zm-320 0v-560h160v560H240Z"></path></svg>
+
+<svg id="btn-add-record-play" class="rec btn-pause-play" style="display:none;position: absolute;top: 12px;right: 69px;z-index: 99999999999;-webkit-app-region: no-drag;cursor: pointer;fill: white;" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M320-200v-560l440 280-440 280Z"></path></svg>
+
+<svg id="btn-add-record-stop" class="rec btn-pause-play" style="display:none;position: absolute;top: 12px;right: 100px;z-index: 99999999999;-webkit-app-region: no-drag;cursor: pointer;fill: white;" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M240-240v-480h480v480H240Z"></path></svg>
+
+<button style="display:none;position: absolute;top: 6px;right: 10px;background: transparent;pointer-events: none;" class="rec loader-record button is-link is-loading">Loading</button>
+
+
+  <div class="btn-tool  btn-reload" style="display:none;" onclick="window.location.reload();nw.App.clearCache();">
+					<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z"/></svg>            
+			</div>
+            
+            <div class="btn-tool active btn-cursor" style="display:non;" onclick="">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                  <path d="M551-80 406-392 240-160v-720l560 440H516l144 309-109 51Z" />
+              </svg>
+            </div>
+            
+            
+            <div class="btn-tool btn-draw ">
+              <svg style="display:non;" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                  <path  d="M160-120v-170l527-526q12-12 27-18t30-6q16 0 30.5 6t25.5 18l56 56q12 11 18 25.5t6 30.5q0 15-6 30t-18 27L330-120H160Zm80-80h56l393-392-28-29-29-28-392 393v56Zm560-503-57-57 57 57Zm-139 82-29-28 57 57-28-29ZM560-120q74 0 137-37t63-103q0-36-19-62t-51-45l-59 59q23 10 36 22t13 26q0 23-36.5 41.5T560-200q-17 0-28.5 11.5T520-160q0 17 11.5 28.5T560-120ZM183-426l60-60q-20-8-31.5-16.5T200-520q0-12 18-24t76-37q88-38 117-69t29-70q0-55-44-87.5T280-840q-45 0-80.5 16T145-785q-11 13-9 29t15 26q13 11 29 9t27-13q14-14 31-20t42-6q41 0 60.5 12t19.5 28q0 14-17.5 25.5T262-654q-80 35-111 63.5T120-520q0 32 17 54.5t46 39.5Z" />
+              </svg>
+            </div>
+            
+            <div class="btn-tool btn-draw-text " style="display: none;">
+              <svg style="    fill: #9C27B0;position: absolute;top: -5px;left: 33px;zoom: 0.6;" width="24" height="24"
+                  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm shrink-0">
+                  <path
+                      d="M8.78158 8.60266L9.8188 5.49098C10.037 4.83634 10.963 4.83634 11.1812 5.49098L12.2184 8.60266C12.7187 10.1035 13.8965 11.2813 15.3973 11.7816L18.509 12.8188C19.1637 13.037 19.1637 13.963 18.509 14.1812L15.3973 15.2184C13.8965 15.7187 12.7187 16.8965 12.2184 18.3973L11.1812 21.509C10.963 22.1637 10.037 22.1637 9.8188 21.509L8.78158 18.3973C8.28128 16.8965 7.10354 15.7187 5.60266 15.2184L2.49098 14.1812C1.83634 13.963 1.83634 13.037 2.49098 12.8188L5.60266 11.7816C7.10354 11.2813 8.28128 10.1035 8.78158 8.60266Z"
+                      fill=""></path>
+                  <path   d="M17.1913 3.69537L17.6794 2.23105C17.7821 1.92298 18.2179 1.92298 18.3206 2.23105L18.8087 3.69537C19.0441 4.40167 19.5983 4.9559 20.3046 5.19133L21.769 5.67944C22.077 5.78213 22.077 6.21787 21.769 6.32056L20.3046 6.80867C19.5983 7.0441 19.0441 7.59833 18.8087 8.30463L18.3206 9.76895C18.2179 10.077 17.7821 10.077 17.6794 9.76895L17.1913 8.30463C16.9559 7.59833 16.4017 7.0441 15.6954 6.80867L14.231 6.32056C13.923 6.21787 13.923 5.78213 14.231 5.67944L15.6954 5.19133C16.4017 4.9559 16.9559 4.40167 17.1913 3.69537Z"  fill=""></path>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M280-160v-520H80v-120h520v120H400v520H280Zm360 0v-320H520v-120h360v120H760v320H640Z"/></svg>
+           
+            </div> <div class="btn-tool btn-text ">
+            
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M280-160v-520H80v-120h520v120H400v520H280Zm360 0v-320H520v-120h360v120H760v320H640Z"/></svg>
+            </div>
+            
+            
+            
+            
+            <div class="btn-tool btn-shape " style="position: relative;">
+              <svg style="    fill: #9C27B0;position: absolute;top: -5px;left: 33px;zoom: 0.6;" width="24" height="24"
+                  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm shrink-0">
+                  <path
+                      d="M8.78158 8.60266L9.8188 5.49098C10.037 4.83634 10.963 4.83634 11.1812 5.49098L12.2184 8.60266C12.7187 10.1035 13.8965 11.2813 15.3973 11.7816L18.509 12.8188C19.1637 13.037 19.1637 13.963 18.509 14.1812L15.3973 15.2184C13.8965 15.7187 12.7187 16.8965 12.2184 18.3973L11.1812 21.509C10.963 22.1637 10.037 22.1637 9.8188 21.509L8.78158 18.3973C8.28128 16.8965 7.10354 15.7187 5.60266 15.2184L2.49098 14.1812C1.83634 13.963 1.83634 13.037 2.49098 12.8188L5.60266 11.7816C7.10354 11.2813 8.28128 10.1035 8.78158 8.60266Z"
+                      fill=""></path>
+                  <path
+                      d="M17.1913 3.69537L17.6794 2.23105C17.7821 1.92298 18.2179 1.92298 18.3206 2.23105L18.8087 3.69537C19.0441 4.40167 19.5983 4.9559 20.3046 5.19133L21.769 5.67944C22.077 5.78213 22.077 6.21787 21.769 6.32056L20.3046 6.80867C19.5983 7.0441 19.0441 7.59833 18.8087 8.30463L18.3206 9.76895C18.2179 10.077 17.7821 10.077 17.6794 9.76895L17.1913 8.30463C16.9559 7.59833 16.4017 7.0441 15.6954 6.80867L14.231 6.32056C13.923 6.21787 13.923 5.78213 14.231 5.67944L15.6954 5.19133C16.4017 4.9559 16.9559 4.40167 17.1913 3.69537Z"
+                      fill=""></path>
+              </svg>
+              <svg style=" " xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                  <path
+                      d="M600-360ZM320-242q10 1 19.5 1.5t20.5.5q11 0 20.5-.5T400-242v82h400v-400h-82q1-10 1.5-19.5t.5-20.5q0-11-.5-20.5T718-640h82q33 0 56.5 23.5T880-560v400q0 33-23.5 56.5T800-80H400q-33 0-56.5-23.5T320-160v-82Zm40-78q-117 0-198.5-81.5T80-600q0-117 81.5-198.5T360-880q117 0 198.5 81.5T640-600q0 117-81.5 198.5T360-320Zm0-80q83 0 141.5-58.5T560-600q0-83-58.5-141.5T360-800q-83 0-141.5 58.5T160-600q0 83 58.5 141.5T360-400Zm0-200Z" />
+              </svg>
+            </div>
+            
+            
+            
+            
+            
+            <div class="btn-tool btn-eraser " style="position:relative;">
+              <svg style=" position: absolute; top: 130px; left: 79px; zoom: 0.035;" xmlns="http://www.w3.org/2000/svg"
+                  version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000"
+                  preserveAspectRatio="xMidYMid meet">
+                  <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
+                      <path
+                          d="M2643 4855 c-129 -35 -91 0 -1270 -1178 -762 -762 -1120 -1125 -1137 -1157 -74 -136 -72 -302 4 -434 19 -34 192 -213 505 -526 l475 -475 -289 -5 -290 -5 -30 -29 c-25 -24 -31 -38 -31 -74 0 -35 6 -49 29 -73 l29 -29 1685 0 1684 0 26 24 c52 48 46 124 -12 163 l-34 23 -851 0 -851 0 981 983 c926 927 982 986 1008 1046 41 93 53 175 38 261 -25 149 -13 134 -685 807 -527 526 -620 615 -672 641 -105 52 -210 64 -312 37z m-468 -2129 l730 -724 -460 -461 -460 -461 -235 0 -236 0 -546 548 c-525 526 -547 549 -562 601 -20 68 -20 84 0 152 15 52 36 74 522 562 279 279 509 507 512 507 3 0 334 -326 735 -724z" />
+                  </g>
+              </svg>
+              <svg style="opacity:0;" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                  <path
+                      d="M353-127 127-353q-12-12-12-28.5t12-28.5l423-423q12-12 28.5-12t27.5 12l227 226q12 12 12 28.5T833-550L410-127q-12 12-28.5 12T353-127Z" />
+              </svg>
+            </div>
+            
+         
+            
+            
+              <div class="btn-tool btn-ruler " style="position:relative;">
+                <svg style="transform: translate(3px, 2px);" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M208-120q-37 0-62.5-25.5T120-208v-548q0-29 27-40.5t47 8.5l90 90-54 54 28 28 54-54 104 104-54 54 28 28 54-54 104 104-54 54 28 28 54-54 104 104-54 54 28 28 54-54 80 80q20 20 8.5 47T756-120H208Zm32-120h332L240-572v332Z"/></svg>
+              </div>  
+
+              <div class="btn-tool btn-compass " style="position:relative;">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m270-120-10-88 114-314q15 14 32.5 23.5T444-484L334-182l-64 62Zm420 0-64-62-110-302q20-5 37.5-14.5T586-522l114 314-10 88ZM480-520q-50 0-85-35t-35-85q0-39 22.5-69.5T440-752v-88h80v88q35 12 57.5 42.5T600-640q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Z"/></svg>
+            </div>
+
+            <div class="btn-tool btn-folder " style="position:relative;">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640H447l-80-80H160v480l96-320h684L837-217q-8 26-29.5 41.5T760-160H160Zm84-80h516l72-240H316l-72 240Zm0 0 72-240-72 240Zm-84-400v-80 80Z"/></svg>
+
+                
+              
+            </div>
+              
+
+            
+            <div class="btn-tool  btn-fullscreen" style="display:none;" onclick="const win = require('nw.gui').Window.get(); win.isFullscreen ? win.leaveFullscreen() : win.enterFullscreen();">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M120-120v-200h80v120h120v80H120Zm520 0v-80h120v-120h80v200H640ZM120-640v-200h200v80H200v120h-80Zm640 0v-120H640v-80h200v200h-80Z"/></svg>
+
+            </div>
+
+            
+            
+            <div class="btn-toolX btn-color " style="position:relative;">
+              <div style="background: white;width: 22px;height: 22px;border-radius: 50%;outline: 4px solid transparent;border: 2px solid #fff;" class="box-color"></div>
+            </div>
+            
+            <div class="btn-toolX btn-color active" style="position:relative;">
+              <div style="background: black;width: 22px;height: 22px;border-radius: 50%;outline: 4px solid transparent;border: 2px solid #fff;" class="box-color"></div>
+            </div>
+            
+            <div class="btn-toolX btn-color " style="position:relative;">
+              <div style="background: #2196f3;width: 22px;height: 22px;border-radius: 50%;outline: 4px solid transparent;border: 2px solid #fff;" class="box-color"></div>
+            </div>
+            
+            <div class="btn-toolX btn-color " style="position:relative;">
+              <div style="background: #f44336;width: 22px;height: 22px;border-radius: 50%;outline: 4px solid transparent;border: 2px solid #fff;" class="box-color"></div>
+            </div>
+            <div class="btn-toolX btn-color " style="position:relative;">
+              <div style="background: #ffeb3b;width: 22px;height: 22px;border-radius: 50%;outline: 4px solid transparent;border: 2px solid #fff;" class="box-color"></div>
+            </div>
+            
+            
+            <div class="btn-toolX btn-color " style="position:relative;">
+              <div style="background: #4caf50;width: 22px;height: 22px;border-radius: 50%;outline: 4px solid transparent;border: 2px solid #fff;" class="box-color"></div>
+            </div>
+            
+            
+            
+            
+            
+            <div class="btn-toolX btn-size active" style="position:relative;">
+              <div style="" class="box-size">1</div>
+            </div>
+            <div class="btn-toolX btn-size " style="position:relative;">
+              <div style="" class="box-size">2</div>
+            </div>
+            <div class="btn-toolX btn-size " style="position:relative;">
+              <div style="" class="box-size">4</div>
+            </div>
+            
+            <div class="btn-toolX btn-size " style="position:relative;">
+              <div style="" class="box-size">8</div>
+            </div>
+            <div class="btn-toolX btn-size " style="position:relative;">
+              <div style="" class="box-size">12</div>
+            </div>
+            <div class="btn-toolX btn-size " style="position:relative;">
+              <div style="" class="box-size">18</div>
+            </div>
+            
+            <div class="btn-toolX btn-size " style="position:relative;">
+              <div style="" class="box-size">22</div>
+            </div>
+            
+            
+             
+            </header>
+             
+
+
+
+
+
+
+
+            <div id="foo">
+
+              <div id="leftPane">
+              <iframe id="leftframe" class="myframe" style="width: 100%;height:100%;top:0;left:0;overflow:hidden;" width="100%" height="100%" src="pdf/web/viewer.html?p=1" frameborder="0"></iframe>
+              </div>
+              
+              <div id="rightPane">
+              <iframe id="rightframe" class="rightframe"  style="width: 100%;height:100%;top:0;right:0;overflow:hidden;" width="100%" height="100%" src="pdf/web/viewer.html?p=2" frameborder="0"></iframe>
+              </div>
+              
+              
+              </div>
+          <!--   -->
+              
+              
+              
+              <script>
+         $(document).ready(function () {
+  var splitter = $('#foo')
+    .height(200)
+    .split({
+      orientation: 'vertical',
+      limit: 10,
+      position: '50%', // this sets the splitter to the middle
+      onDrag: function (event) {
+        console.log(splitter.position());
+      }
+    });
+});
+              </script>
+              
+              
+
+
+
+
+
+
+
+
+
+        <svg class="aqaq"
+        style="display:none;border:1px solid #00000;position:absolute;top:0;left:00px;user-select: none;background:black;"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svgElement"
+        x="0px" y="0px" width="100%" height="100%">
+
+      
+
+    </svg>
+
+
+
+
+        
+
+<div id="rule" class="noscroll toolGeo noprint" orW="calc(((100 * 20.4) / 20.02) * 1%)" style="opacity:1;transform: rotate(0rad);position:absolute;top:50%;left:30%;transform-origin: 0px 0% 0px;">
+    <input id="slider-drawer" class="noscroll nodrag" type="range" step="0.01" min="0" max="" style="position:absolute;top:-15%;left:00%;">
+    <div id="wrap-helper-pointer-drawer" style="z-index:100000;position:absolute;top:0%;left:0%;width:97%;height:0px;background:;">
+        <div id="helper-pointer-drawer" class="scalefix" style="position:absolute;top:-1.5px;left:0%;width:0px;height:0px;background:red;"></div>
+    </div>  
+   <div id="wrap-over-rule" style="width:100%;height:100%;position:absolute;top:0;left:0;">
+    
+
+    <div id="texture-rule" style="position:absolute;top:0%;left:0%;background:;">
+
+
+        <div id="texture-rule" style="position:absolute;top:0%;left:0%;background:#ffcf12;">
+
+
+
+        
+            <div class="text-long-bar" style="width: 3px; height: 30px; left: 10px;"> 
+                <span style="display: inline-block;line-height: 77px;font-size: 16px;transform: translateX(-3px);">0</span> 
+            </div>
+
+            <div class="text-long-bar" style="width: 2px; height: 15px; left: 17px;"></div>
+
+            <div class="text-long-bar" style="width: 2px; height: 15px; left: 23px;"></div>
+
+            <div class="text-long-bar" style="width: 2px; height: 15px; left: 29px;"></div>
+
+            <div class="text-long-bar" style="width: 2px; height: 15px; left: 35px;"></div>
+
+            <div class="text-long-bar" style="width: 2px; height: 20px; left: 41px;"></div>
+
+            <div class="text-long-bar" style="width: 2px; height: 15px; left: 47px;"></div>
+
+            <div class="text-long-bar" style="width: 2px; height: 15px; left: 53px;"></div>
+            <div class="text-long-bar" style="width: 2px; height: 15px; left: 59px;"></div>
+            <div class="text-long-bar" style="width: 2px; height: 15px; left: 65px;"></div>
+            <div class="text-long-bar" style="width: 3px; height: 30px; left: 71px;"></div>
+            <div class="text-long-bar" style="width: 2px; height: 15px; left: 78px;"></div>
+            <div class="text-long-bar" style="width: 2px; height: 15px; left: 84px;"></div>
+            <div class="text-long-bar" style="width: 2px; height: 15px; left: 90px;"></div>
+            <div class="text-long-bar" style="width: 2px; height: 15px; left: 96px;"></div>
+            <div class="text-long-bar" style="width: 2px; height: 20px; left: 102px;"></div>
+            <div class="text-long-bar" style="width: 2px; height: 15px; left: 108px;"></div>
+            <div class="text-long-bar" style="width: 2px; height: 15px; left: 114px;"></div>
+            <div class="text-long-bar" style="width: 2px; height: 15px; left: 120px;"></div>
+            <div class="text-long-bar" style="width: 2px; height: 15px; left: 126px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 132px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 139px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 145px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 151px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 157px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 163px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 169px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 175px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 181px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 187px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 193px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 200px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 206px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 212px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 218px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 224px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 230px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 236px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 242px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 248px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 254px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 261px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 267px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 273px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 279px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 285px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 291px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 297px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 303px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 309px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 315px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 322px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 328px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 334px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 340px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 346px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 352px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 358px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 364px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 370px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 376px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 383px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 389px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 395px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 401px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 407px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 413px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 419px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 425px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 431px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 437px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 444px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 450px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 456px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 462px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 468px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 474px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 480px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 486px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 492px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 498px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 505px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 511px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 517px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 523px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 529px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 535px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 541px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 547px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 553px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 559px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 566px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 572px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 578px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 584px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 590px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 596px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 602px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 608px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 614px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 620px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 627px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 633px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 639px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 645px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 651px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 657px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 663px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 669px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 675px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 681px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 688px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 694px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 700px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 706px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 712px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 718px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 724px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 730px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 736px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 742px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 749px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 755px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 761px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 767px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 773px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 779px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 785px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 791px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 797px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 803px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 810px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 816px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 822px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 828px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 834px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 840px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 846px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 852px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 858px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 864px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 871px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 877px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 883px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 889px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 895px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 901px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 907px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 913px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 919px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 925px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 932px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 938px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 944px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 950px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 956px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 962px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 968px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 974px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 980px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 986px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 993px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 999px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1005px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1011px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 1017px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1023px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1029px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1035px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1041px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 1047px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1054px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1060px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1066px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1072px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 1078px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1084px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1090px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1096px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1102px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 1108px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1115px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1121px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1127px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1133px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 1139px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1145px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1151px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1157px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1163px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 1169px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1176px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1182px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1188px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1194px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 1200px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1206px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1212px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1218px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1224px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 1230px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1237px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1243px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1249px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1255px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 1261px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1267px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1273px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1279px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1285px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 1291px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1298px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1304px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1310px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1316px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 1322px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1328px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1334px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1340px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1346px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 1352px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1359px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1365px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1371px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1377px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 1383px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1389px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1395px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1401px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1407px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 1413px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1420px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1426px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1432px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1438px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 1444px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1450px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1456px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1462px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1468px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 1474px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1481px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1487px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1493px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1499px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 1505px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1511px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1517px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1523px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1529px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 1535px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1542px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1548px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1554px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1560px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 1566px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1572px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1578px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1584px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1590px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 1596px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1603px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1609px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1615px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1621px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 1627px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1633px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1639px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1645px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1651px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 1657px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1664px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1670px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1676px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1682px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 1688px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1694px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1700px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1706px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1712px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 1718px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1725px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1731px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1737px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1743px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 1749px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1755px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1761px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1767px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1773px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 1779px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1786px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1792px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1798px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1804px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 1810px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1816px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1822px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1828px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1834px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 1840px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1847px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1853px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1859px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1865px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 1871px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1877px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1883px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1889px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1895px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 1901px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1908px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1914px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1920px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1926px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 1932px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1938px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1944px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1950px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1956px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 1962px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1969px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1975px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1981px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1987px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 1993px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 1999px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2005px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2011px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2017px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 2023px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2030px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2036px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2042px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2048px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 2054px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2060px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2066px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2072px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2078px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 2084px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2091px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2097px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2103px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2109px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 2115px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2121px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2127px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2133px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2139px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 2145px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2152px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2158px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2164px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2170px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 2176px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2182px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2188px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2194px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2200px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 2206px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2213px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2219px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2225px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2231px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 2237px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2243px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2249px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2255px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2261px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 2267px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2274px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2280px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2286px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2292px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 2298px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2304px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2310px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2316px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2322px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 2328px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2335px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2341px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2347px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2353px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 2359px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2365px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2371px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2377px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2383px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 2389px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2396px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2402px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2408px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2414px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 2420px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2426px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2432px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2438px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2444px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 2450px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2457px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2463px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2469px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2475px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 2481px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2487px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2493px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2499px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2505px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 2511px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2518px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2524px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2530px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2536px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 2542px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2548px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2554px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2560px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2566px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 2572px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2579px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2585px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2591px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2597px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 2603px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2609px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2615px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2621px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2627px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 2633px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2640px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2646px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2652px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2658px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 2664px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2670px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2676px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2682px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2688px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 2694px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2701px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2707px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2713px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2719px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 2725px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2731px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2737px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2743px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2749px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 2755px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2762px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2768px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2774px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2780px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 2786px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2792px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2798px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2804px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2810px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 2816px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2823px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2829px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2835px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2841px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 2847px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2853px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2859px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2865px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2871px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 2877px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2884px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2890px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2896px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2902px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 2908px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2914px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2920px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2926px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2932px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 2938px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2945px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2951px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2957px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2963px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 2969px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2975px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2981px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2987px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 2993px;"></div><div class="text-long-bar" style="width: 3px; height: 30px; left: 2999px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 3006px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 3012px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 3018px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 3024px;"></div><div class="text-long-bar" style="width: 2px; height: 20px; left: 3030px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 3036px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 3042px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 3048px;"></div><div class="text-long-bar" style="width: 2px; height: 15px; left: 3054px;"></div></div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+    <div id="texture-rule-b" style="position:absolute;top:56%;left:0%;background:;"></div>
+    <div id="helper-pointer-left" style="position:absolute;top:0%;left:0%;width:0px;height:0px;background:red;"></div>
+    <img id="handel-rotate-rule" draggable="false" src="icons/reset-zoom-blue2.png" height="65%" width="auto" style="position:absolute;top:20%;right:5%;max-width: 53px;">
+    <div id="wrap-pointer-origin" class="" style="position:absolute;top:00%;left:0%;">
+        <div id="box-pointer-origin" style="position:absolute;top:0%;left:0%;">
+            <script> $(document).ready(function () {$('#slider-origin').val(0) });</script>
+            <div id="pointer-origin" style="position:absolute;top:00%;left:50%;">
+                <div id="helper-pointer-origin" style="z-index:9999999999;position:absolute;top:0%;left:0%;width:1px;height:1px;background:red;"></div>
+            </div>
+        </div><!--End box-pointer-origin-->
+    </div><!--End wrap-pointer-origin-->
+    <input id="slider-origin" class="noscroll nodrag" type="range" step="0.01" min="0" max="" style="position:absolute;top:50%;left:0%;">
+    <input id="slider-resize-rule" class="noscroll nodrag" type="range" step="0.01" min="0" max="" style="z-index:10;position:absolute;top:00%;left:00%;">
+    <div id="handel-drag-rule" style="display:non;position:absolute;top:17%;top:30%;left:0%;"></div>
+ </div><!--End wrap-over-rule-->
+</div><!--End rule-->
+<div id="helper-rule" style="position:absolute;top:-300%;left:00%;"></div>
+
+
+
+
+<div id="wrap-meniCompass" class="noscroll toolGeo noprint" style="position:absolute;top:40%;left:30%;transform-origin: 0% 0px 0px;width:auto;height:auto;background:;">
+    <div id="PP" style="position:absolute;top:00%;right:0px;width:0px;height:0px;background:red;"></div>
+    <div id="PI" style="position:absolute;top:00%;left:0px;width:0px;height:0px;background:orange;"></div>
+    <div id="parent-wrap-compass-dessin" class="scalefix">
+        <div id="wrap-compass-dessin"   style="transform-origin:0% 0% 0px;">
+            <div id="headComass" style="position:absolute;top:-196px;left:-14px;z-index:10;"></div><!--End compassIbra--> 
+            <div id="compassIbra" style="transform-origin:0% 0% 0px;position:absolute;top:-196px;left:-14px;">
+                <div id="PointercompassIbra" style="transform-origin:0% 0% 0px;position:absolute;bottom:0px;left:13px;width:0px;height:0px;background:blue;z-index:100000;"></div>
+            </div><!--End compassIbra-->
+            <div id="compassPencil" style="transform-origin:0% 0% 0px;position:absolute;top:-144px;left:8px;">
+                <img id="ArrowSDirect" class="noDraggable" src="icons/up-direction.svg" alt="" height="30px" style="display:none;filter:FlipH;transform:rotate(190deg) scaleX(-1);position:absolute;top:130px;left:15px;">
+                <img id="ArrowSInDirect" class="noDraggable" src="icons/up-direction.svg" alt="" height="30px" style="display:none;transform:rotate(55deg);position:absolute;top:130px;left:15px;">
+                
+                <div id="PointercompassPencil" style="position:absolute;bottom:0;left:4px;width:0px;height:0px;background:blue;z-index:100000;"></div>
+                <div id="handel-rotate-w" class="HandelrotateComapss box-handel" typeR="w" style="background:grayX;position:absolute;top:50px;left:25px;z-index:10;"></div>
+                <div id="handel-rotate-d" class="HandelrotateComapss box-handel" typeR="d" style="background:blackX;position:absolute;top:110px;left:0px;z-index:10;cursor:crosshair;"></div>
+                <div id="pointer-handel-rotate-r" style="width:1px;height:1px;background:redX;position:absolute;top:97px;left:24px;z-index:10;"></div>
+            </div><!--End compassPencil-->
+        </div><!--End wrap-compass-dessin-->
+    </div><!--parent-wrap-compass-dessin-->
+    <div id="meniCompass" class="scalefix" style="width:12px;height:02px;position:relative;top:0px;transform-origin: 0% 00% 0px;z-index:10;background:;">
+    <input id="slider-resize-compass" class="noscroll" type="range" step="1" max="180" value="0"  style="width:317px;transform-origin:0% 0% 0px;position:absolute;top:-44px;right:-330px;z-index:10;" />
+    <div id="helper-slider-same-pos" class=""style="display:none;position:absolute;top:-156px;right:-330px;width:317px;height:1px;background:green; transform-origin:0% 0% 0px;position:absolute;z-index:10;" >
+        <div id="pointer-prog-slider-pos" style="position:absolute;width:0%;height:100%;background:pink;">
+            <div id="p-h-same" style="position:absolute;top:0;right:0;width:1px;height:1px;background:orange;"></div>
+        </div>
+    </div>
+    <div id="helper-slider-resize-compass"class=""style="display:none;position:absolute;top:-56px;right:-330px;width:317px;height:1px;background:red; transform-origin:0% 0% 0px;position:absolute;z-index:10;" >
+        <div id="prog-slider-resize" style="position:absolute;width:0%;height:100%;background:blue;">
+            <div id="pointer-prog-slider" style="position:absolute;top:0;right:0;width:1px;height:1px;background:orange;"></div>
+        </div>
+    </div>
+    </div><!--meniCompass-->
+</div><!--#wrap-meniCompass-->
+
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+
+<div id="helperPanZoom" class="pagePanZoom" style="position:absolute;top:0;background:red;opacity:0.0;z-index:-1;"></div>
+<div class="scalefix" id="helper-pointer-rule" style="width:3px;height:3px;background:transparent;position:absolute;top:-1000%;left:10%;"></div>
+
+
+
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/Annotation--Rule-Compass.js"></script>
+ <!---->
+
+<script src="js/header.js"></script>
+<script src="js/freedraw.js"></script>
+<script src="js/text.js"></script>
+<script src="js/freedrawtext.js"></script>
+<script src="js/shape.js"></script>
+<script src="js/eraser.js"></script>
+<script src="js/color.js"></script> 
+<script src="js/record.js"></script> 
+
+
+<style>
+    .vsplitter{
+    z-index: 0 !important;
+    background: #b8b8b8;
+  }
+  .splitter_panel .vsplitter {
+    background-color: #dfdfdf;
+    cursor: col-resize;
+    z-index: 900;
+    width: 4px;
+    height: 100%;
+    transform: translateY(13px);
+}
+#foo{
+  background: white;
+}
+</style>
+
+    </body>
+</html>
