@@ -33,7 +33,20 @@ See https://github.com/adobe-type-tools/cmap-resources
 <link rel="resource" type="application/l10n" href="locale/locale.json">
 <script src="../build/pdf.mjs" type="module"></script>
     <link rel="stylesheet" href="viewer.css">
+    <link rel="stylesheet" type="text/css" href="css/add-text.css">
+
     <script src="viewer.mjs" type="module"></script>
+
+    <!-- Add the theme's stylesheet -->
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" />
+        <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+
 
 
   <style id="mystyle">
@@ -638,17 +651,27 @@ function annotationPage(  page  ) {
   $("#page_"+page).html(  ` <svg  class="stage_draw_svg p`+page+`" style="overflow: hidden; position: absolute; left: 0px; top: 0; background:rgba(0,0,0,0.0);  
    width: `+$("#page_"+page).css("width")+` ; height: `+$("#page_"+page).css("height")+`; transform-origin: 0 0;  " version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
     viewBox="0 0 `+parseInt($("#page_"+page).css("width"))+` `+parseInt($("#page_"+page).css("height"))+`" preserveAspectRatio="xMinYMin meet">
-   </svg>`  ); 
+   
+    <foreignObject class="foreighnoject layer-text" x="0" y="0" width="100%" height="100%" style="  color:white;background:;overflow: visible;display:non; ">
+
+
+
+
+
+        </foreignObject>
+   
+    </svg>`  ); 
 }//end annotationPage
 
-
-
+const container = document.getElementById('viewerContainer');
+ 
 
 
     </script>
 
     <script src="js/freedraw.js"></script>
     <script src="js/freedrawtext.js"></script>
+    <script type="module" src="js/text.js"></script>
     <script src="js/shape.js"></script>
     <script src="js/eraser.js"></script>
     <script src="js/rule_pdf.js"></script>
@@ -786,6 +809,13 @@ pointer-events:none;
 cursor: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAtOTYwIDk2MCA5NjAiIHdpZHRoPSIyNHB4IiBmaWxsPSIjNWY2MzY4Ij48cGF0aCBkPSJtNDkwLTUyNyAzNyAzNyAyMTctMjE3LTM3LTM3LTIxNyAyMTdaTTIwMC0yMDBoMzdsMjMzLTIzMy0zNy0zNy0yMzMgMjMzdjM3Wm0zNTUtMjA1TDQwNS01NTVsMTY3LTE2Ny0yOS0yOS0yMTkgMjE5LTU2LTU2IDIxOC0yMTlxMjQtMjQgNTYuNS0yNHQ1Ni41IDI0bDI5IDI5IDUwLTUwcTEyLTEyIDI4LjUtMTJ0MjguNSAxMmw5MyA5M3ExMiAxMiAxMiAyOC41VDgyOC02NzhMNTU1LTQwNVpNMjcwLTEyMEgxMjB2LTE1MGwyODUtMjg1IDE1MCAxNTAtMjg1IDI4NVoiLz48L3N2Zz4=') 0 35, auto;
 }
 
+.ql-toolbar{
+width: 355px !important;
+transform: translateY(-50%);
+}
+.ql-formats{
+  display: block !important;
+}
 </style>
 <script>
 
@@ -804,6 +834,10 @@ if( paramValue == "1" ){
 }else{
   $("#file_choose").css( "left","calc( 100% - 62px )" );
 }
+
+
+ 
+
 </script>
   </body>
 </html>
