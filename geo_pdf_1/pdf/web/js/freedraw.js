@@ -5,6 +5,7 @@
 
 
 
+
 var points = [];
 
  var path ="";
@@ -15,12 +16,7 @@ var size = 12;
 
 
 $(document).on("pointerdown",".stage_draw_svg",function (e) {
-
-
-
-  
    size = parseInt( $(parent.document).find(".btn-size.active .box-size").html() );
-  // console.log( Ss )
      var pageX = e.originalEvent.pageX;
      var pageY = e.originalEvent.pageY;
     var x = e.originalEvent.offsetX /  Ss;
@@ -48,12 +44,10 @@ $(document).on("pointerdown",".stage_draw_svg",function (e) {
     newPath.setAttribute("class", "x tosort");
     newPath.setAttribute("id","a"+ Math.floor(Date.now() )  ); //  
     newPath.setAttribute("fill",  $(parent.document).find(".btn-color.active div").css("background-color")  );
-   // newPath.setAttribute("fill",  "red"  );
-   $(this)[0].appendChild(newPath);
-path = newPath;
-
+    // newPath.setAttribute("fill",  "red"  );
+    $(this)[0].appendChild(newPath);
+    path = newPath;
     points = [[x*Ss, y*Ss, e.originalEvent.pressure]];
- 
     render();
 
 
@@ -64,7 +58,52 @@ path = newPath;
 
 
 
+$(document).on("pointermove", ".stage_draw_svg", function (e) {
+  // get current brush size (you already have this)
+  size = parseInt($(parent.document).find(".btn-size.active .box-size").html());
 
+  // only draw in free‑draw mode
+  if (!$(parent.document).find("body").hasClass("freedraw") || !path) return;
+
+  // raw pointer coords in your SVG’s local space
+  let x = e.originalEvent.offsetX;
+  let y = e.originalEvent.offsetY;
+  let pressure = e.originalEvent.pressure || 0.5;
+
+  if (e.shiftKey && points.length > 0) {
+    // use the very first point of the current path as the “anchor”
+    const [ox, oy] = points[0];
+
+    // decide once whether to go horizontal or vertical
+    const dx = Math.abs(x - ox);
+    const dy = Math.abs(y - oy);
+    if (dx > dy) {
+      // horizontal: lock Y to origin Y
+      y = oy;
+    } else {
+      // vertical: lock X to origin X
+      x = ox;
+    }
+
+    // rebuild points as just origin + current, so it’s one straight segment
+    points = [
+      [ox, oy, points[0][2]],
+      [x, y, 1]
+    ];
+  } else {
+    // normal free‑draw: just append
+    points.push([x, y, 1]);
+  }
+
+  render();
+});
+
+
+
+
+
+
+/*
 $(document).on("pointermove",".stage_draw_svg",function (e) {
   size = parseInt( $(parent.document).find(".btn-size.active .box-size").html() );
 
@@ -90,7 +129,7 @@ $(document).on("pointermove",".stage_draw_svg",function (e) {
     //}
 })//end stage_draw_svg
 
-
+*/
 
 
 
@@ -124,7 +163,7 @@ function render() {
     getSvgPathFromStroke(
       ae(points, {
         size: size,
-        thinning: 0.5,
+        thinning: 0,
         smoothing: 0.5,
         streamline: 0.5,
       })
