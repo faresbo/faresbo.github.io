@@ -1,6 +1,19 @@
 
 
 
+$(document).on("click", ".btn-eraser-toggle", function () {
+  $(".btn-tool").removeClass("active");
+  $(this).addClass("active");
+  $("body").removeClass();
+  $("body").addClass("eraser-toggle");
+});
+ 
+
+
+
+
+
+
 $(document).on("click", ".btn-eraser", function () {
   $(".btn-tool").removeClass("active");
   $(this).addClass("active");
