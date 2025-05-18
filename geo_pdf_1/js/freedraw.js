@@ -1,3 +1,24 @@
+$(document).on("click", ".btn-square", function () {
+  $(".btn-tool").removeClass("active");
+  $(this).addClass("active");
+  $("body").removeClass();
+  $("body").addClass("draw-square");
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
