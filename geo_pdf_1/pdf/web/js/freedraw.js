@@ -6,6 +6,61 @@
 
 
 
+let squareStart = null;
+let rectElement = null;
+
+$(document).on("pointerdown",".stage_draw_svg",function (e) {
+  if ($(parent.document).find("body").hasClass("draw-square")) {
+    squareStart = { x: e.originalEvent.offsetX, y: e.originalEvent.offsetY };
+  size = parseInt($(parent.document).find(".btn-size.active .box-size").html());
+    color = $(parent.document).find(".btn-color.active div").css("background-color");
+    rectElement = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    rectElement.setAttribute("stroke", "transparent");
+    rectElement.setAttribute("fill", color);
+    rectElement.setAttribute("class", "tx x");
+    rectElement.setAttribute("stroke-width", 2);
+    $(this)[0].appendChild(rectElement);
+  }
+})
+$(document).on("pointermove", ".stage_draw_svg", function (e) {
+  if ($(parent.document).find("body").hasClass("draw-square")) {
+    if (squareStart && rectElement) {
+      const x = Math.min(squareStart.x, e.originalEvent.offsetX);
+      const y = Math.min(squareStart.y, e.originalEvent.offsetY);
+
+      const width = Math.abs(e.originalEvent.offsetX - squareStart.x);
+      const height = Math.abs(e.originalEvent.offsetY - squareStart.y);
+
+      rectElement.setAttribute("x", x);
+      rectElement.setAttribute("y", y);
+      rectElement.setAttribute("width", width);
+      rectElement.setAttribute("height", height);
+    }
+  }
+});
+
+
+$(document).on("pointerup",".stage_draw_svg",function (e) {
+  if ($(parent.document).find("body").hasClass("draw-square")) {
+    squareStart = null;
+    rectElement = null;
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var points = [];
 
  var path ="";
